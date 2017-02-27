@@ -1,0 +1,13 @@
+{
+    "name": "redandblue/theme-skeleton",
+    "description": "Theme skeleton for WordPress.",
+    "type": "wordpress-theme",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Christian Nikkanen",
+            "email": "christian@redandblue.fi"
+        }
+    ],
+    "require": {}
+}
