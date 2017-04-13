@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 exports.devServer = ({ host, port } = {}) => ({
   devServer: {
@@ -62,15 +63,6 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
         use: [
           'style-loader',
           'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: () => ([
-                require('autoprefixer'),
-                require('precss'),
-              ]),
-            },
-          },
         ],
       },
       {
@@ -87,7 +79,7 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
         // jeet
         stylus: {
           use: [
-            // require('jeet') // this just doesn't work
+            // require('jeet') // this just doesn't work, import it in .styl files
           ],
           import: [
             // '~jeet/jeet'
@@ -96,4 +88,37 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
       },
     }),
   ],
+});
+
+exports.extractCSS = ({ include, exclude, use }) => {
+  // Output extracted CSS to a file
+  const plugin = new ExtractTextPlugin({
+    filename: '[name].css',
+  });
+
+  return {
+    module: {
+      rules: [
+        {
+          test: /\.(css|styl)$/,
+          include,
+          exclude,
+          use: plugin.extract({
+            use,
+            // fallback: ['css-loader', 'stylus-loader'], // enable and the world will explode
+          }),
+        },
+      ],
+    },
+    plugins: [ plugin ],
+  };
+};
+
+exports.autoprefix = () => ({
+  loader: 'postcss-loader',
+  options: {
+    plugins: () => ([
+      require('autoprefixer'),
+    ]),
+  },
 });

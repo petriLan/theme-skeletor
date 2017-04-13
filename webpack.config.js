@@ -27,7 +27,7 @@ const commonConfig = merge([
     plugins: [
       new CaseSensitivePathsPlugin(), // complain about capitalisation
       new NpmInstallPlugin(), // install dependencies automatically
-      new FriendlyErrorsWebpackPlugin(), // Webpack is mean by default,
+      new FriendlyErrorsWebpackPlugin(), // Webpack is mean by default
       // new NyanProgressPlugin(), // Show progress
       new DashboardPlugin(),
       new webpack.LoaderOptionsPlugin({
@@ -55,10 +55,12 @@ const commonConfig = merge([
     ],
   },
   parts.lintJavaScript({ include: PATHS.app }),
-  parts.loadCSS(),
 ]);
 
 const productionConfig = merge([
+  parts.extractCSS({
+    use: ['css-loader', parts.autoprefix(), 'stylus-loader'],
+  }),
 ]);
 
 const developmentConfig = merge([
@@ -67,6 +69,7 @@ const developmentConfig = merge([
     host: process.env.HOST,
     port: process.env.PORT,
   }),
+  parts.loadCSS(),
 ]);
 
 module.exports = (env) => {
