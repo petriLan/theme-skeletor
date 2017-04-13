@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 exports.devServer = ({ host, port } = {}) => ({
   devServer: {
     // Enable history API fallback so HTML5 History API based
@@ -45,4 +47,39 @@ exports.lintJavaScript = ({ include, exclude, options }) => ({
       },
     ],
   },
+});
+
+exports.loadCSS = ({ include, exclude } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        include,
+        exclude,
+
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.styl$/,
+        include,
+        exclude,
+        use: ['style-loader', 'css-loader', 'stylus-loader'],
+      },
+    ],
+  },
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        // jeet
+        stylus: {
+          use: [
+            // require('jeet') // this just doesn't work
+          ],
+          import: [
+            // '~jeet/jeet'
+          ]
+        },
+      },
+    }),
+  ],
 });
