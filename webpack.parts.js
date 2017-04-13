@@ -50,6 +50,8 @@ exports.lintJavaScript = ({ include, exclude, options }) => ({
 });
 
 exports.loadCSS = ({ include, exclude } = {}) => ({
+  // TODO: Maybe add copy-webpack-plugin for absolute import support
+  // https://survivejs.com/webpack/styling/loading/#understanding-lookups
   module: {
     rules: [
       {
@@ -57,7 +59,19 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
         include,
         exclude,
 
-        use: ['style-loader', 'css-loader'],
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => ([
+                require('autoprefixer'),
+                require('precss'),
+              ]),
+            },
+          },
+        ],
       },
       {
         test: /\.styl$/,
