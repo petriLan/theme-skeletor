@@ -11,8 +11,8 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 
 const parts = require('./webpack.parts');
 const PATHS = {
-  app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build'),
+  app: path.join(__dirname, '..', 'app'),
+  build: path.join(__dirname, '..', 'build'),
 };
 
 const commonConfig = merge([
@@ -23,6 +23,11 @@ const commonConfig = merge([
     output: {
       path: PATHS.build,
       filename: '[name].js',
+      publicPath: '/wp-content/themes/skeleton/'
+    },
+    target: 'web',
+    node: {
+      fs: "empty"
     },
     plugins: [
       new CaseSensitivePathsPlugin(), // complain about capitalisation
@@ -64,12 +69,16 @@ const productionConfig = merge([
 ]);
 
 const developmentConfig = merge([
-  parts.devServer({
+  parts.extractCSS({
+    use: ['css-loader', parts.autoprefix(), 'stylus-loader'],
+  }),
+  // parts.BrowserSync(),
+  /* parts.devServer({
     // Customize host/port here if needed
     host: process.env.HOST,
     port: process.env.PORT,
-  }),
-  parts.loadCSS(),
+  }), */
+  // parts.loadCSS(),
 ]);
 
 module.exports = (env) => {

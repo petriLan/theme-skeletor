@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 exports.devServer = ({ host, port } = {}) => ({
@@ -24,6 +25,9 @@ exports.devServer = ({ host, port } = {}) => ({
       errors: true,
       warnings: true
     },
+    // proxy: {
+      // '*': 'http://wordpress.local'
+    // }
 
     // proxy: {
     // '/./': {
@@ -32,6 +36,31 @@ exports.devServer = ({ host, port } = {}) => ({
     // },
     // },
   },
+});
+
+exports.BrowserSync = () => ({
+  plugins: [
+    new BrowserSyncPlugin(
+      // BrowserSync options
+      {
+        // browse to http://localhost:3000/ during development
+        host: 'localhost',
+        port: 3000,
+        proxy: 'https://wordpress.local/',
+        plugins: ['bs-fullscreen-message'],
+        open: false,
+        files: ['**/*.css, **/*.js, **/*.php']
+      },
+      // plugin options
+      {
+        reload: false,
+        callback: function(instance) {
+          console.log(instance);
+          // console.log(this);
+        }
+      }
+    )
+  ]
 });
 
 exports.lintJavaScript = ({ include, exclude, options }) => ({
