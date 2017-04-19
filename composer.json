@@ -1,0 +1,11 @@
+{
+    "name": "redandblue/theme-skeleton",
+    "type": "wordpress-theme",
+    "authors": [
+        {
+            "name": "Christian Nikkanen",
+            "email": "hi@kisu.li"
+        }
+    ],
+    "require": {}
+}
