@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dashboard -- npm run watch",
-    "watch": "webpack --watch --env development --config ./config/webpack.config.js",
+    "watch": "ENV=development node config/browsersync.js",
     "dev": "nodemon --watch ./config --exec \"npm run watch\"",
     "build": "webpack --env production --config ./config/webpack.config.js",
     "lint:js": "eslint app/ ./config/webpack.*.js --cache"

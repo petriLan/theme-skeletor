@@ -1,8 +1,10 @@
+const path = require('path');
 const browserSync = require('browser-sync').create();
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const AnsiToHTML = require('ansi-to-html');
 const convert = new AnsiToHTML();
+const package = require(path.join(__dirname, '..', 'package.json'));
 
 const webpackConfig = require('./webpack.config')('development');
 const bundler = webpack(webpackConfig);
@@ -65,9 +67,8 @@ bundler.plugin('done', function(stats) {
 browserSync.init({
   host: 'localhost',
   port: 3000,
-  proxy: 'https://wordpress.local/',
-  plugins: ['bs-fullscreen-message'],
-  open: false,
+  proxy: package.proxydomain,
+  open: true,
   files: ['**/*.css, **/*.js, **/*.php'],
   logFileChanges: false,
   middleware: [

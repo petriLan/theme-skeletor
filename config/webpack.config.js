@@ -73,7 +73,7 @@ const developmentConfig = merge([
   parts.extractCSS({
     use: ['css-loader', parts.autoprefix(), 'stylus-loader'],
   }),
-  parts.BrowserSync({ proxy: package.proxydomain, open: true }),
+  // parts.BrowserSync({ proxy: package.proxydomain, open: true }),
   /* parts.devServer({
     // Customize host/port here if needed
     host: process.env.HOST,

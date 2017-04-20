@@ -39,6 +39,7 @@ exports.devServer = ({ host, port } = {}) => ({
 });
 
 exports.BrowserSync = ({ proxy, open }) => ({
+  // TODO: Ditch this.
   plugins: [
     new BrowserSyncPlugin(
       // BrowserSync options
