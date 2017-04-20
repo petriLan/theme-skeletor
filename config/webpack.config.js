@@ -3,9 +3,9 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const package = require(path.join(__dirname, '..', 'package.json'));
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const NpmInstallPlugin = require('npm-install-webpack-plugin');
+// const NpmInstallPlugin = require('npm-install-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 // const NyanProgressPlugin = require('nyan-progress-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
@@ -24,7 +24,7 @@ const commonConfig = merge([
     output: {
       path: PATHS.build,
       filename: '[name].js',
-      publicPath: '/wp-content/themes/skeleton/'
+      publicPath: package.locationFromRoot
     },
     target: 'web',
     node: {
@@ -32,10 +32,9 @@ const commonConfig = merge([
     },
     plugins: [
       new CaseSensitivePathsPlugin(), // complain about capitalisation
-      new NpmInstallPlugin(), // install dependencies automatically
+      // new NpmInstallPlugin(), // install dependencies automatically
       new FriendlyErrorsWebpackPlugin(), // Webpack is mean by default
       // new NyanProgressPlugin(), // Show progress
-      new DashboardPlugin(),
       new webpack.LoaderOptionsPlugin({
         options: {
           eslint: {
@@ -48,16 +47,16 @@ const commonConfig = merge([
 
             // Output to Jenkins compatible XML
             // outputReport: {
-              // filePath: 'checkstyle.xml',
-              // formatter: require('eslint/lib/formatters/checkstyle'),
+            // filePath: 'checkstyle.xml',
+            // formatter: require('eslint/lib/formatters/checkstyle'),
             // },
           },
         },
       }),
 
-      new HtmlWebpackPlugin({
-        title: 'Webpack demo',
-      }),
+      // new HtmlWebpackPlugin({
+      // title: 'Webpack demo',
+      // }),
     ],
   },
   parts.lintJavaScript({ include: PATHS.app }),
@@ -67,25 +66,27 @@ const productionConfig = merge([
   parts.extractCSS({
     use: ['css-loader', parts.autoprefix(), 'stylus-loader'],
   }),
+  parts.generateSourceMaps({ type: 'hidden-source-map' }),
 ]);
 
 const developmentConfig = merge([
+  {
+    plugins: [
+      // new DashboardPlugin(),
+    ]
+  },
   parts.extractCSS({
     use: ['css-loader', parts.autoprefix(), 'stylus-loader'],
   }),
-  // parts.BrowserSync({ proxy: package.proxydomain, open: true }),
-  /* parts.devServer({
-    // Customize host/port here if needed
-    host: process.env.HOST,
-    port: process.env.PORT,
-  }), */
-  // parts.loadCSS(),
+  parts.generateSourceMaps({ type: 'cheap-module-source-map' }),
 ]);
 
 module.exports = (env) => {
   if (env === 'production') {
+    console.log('Running in production mode');
     return merge(commonConfig, productionConfig);
   }
 
+  console.log('Running in development mode');
   return merge(commonConfig, developmentConfig);
 };

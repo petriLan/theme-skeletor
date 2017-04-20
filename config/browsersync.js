@@ -5,6 +5,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const AnsiToHTML = require('ansi-to-html');
 const convert = new AnsiToHTML();
 const package = require(path.join(__dirname, '..', 'package.json'));
+const cp = require('child_process');
 
 const webpackConfig = require('./webpack.config')('development');
 const bundler = webpack(webpackConfig);
@@ -56,9 +57,16 @@ bundler.plugin('done', function(stats) {
     });
   } else {
     console.log('Updating styles');
-    browserSync.sockets.emit('styles:update');
+    // Because we're using webpack-dev-middleware, nothing gets written to disk.
+    // Overcome it by manually running build.
+    cp.exec('npm run build:dev', (err, stdout, stderr) => {
+      if (err) console.error(err);
+      if (stdout) console.log(stdout);
+      if (stderr) console.error(stderr);
+
+      browserSync.sockets.emit('styles:update');
+    });
   }
-  // browserSync.reload();
 });
 
 /**

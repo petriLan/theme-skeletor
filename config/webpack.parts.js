@@ -25,43 +25,7 @@ exports.devServer = ({ host, port } = {}) => ({
       errors: true,
       warnings: true
     },
-    // proxy: {
-      // '*': 'http://wordpress.local'
-    // }
-
-    // proxy: {
-    // '/./': {
-    // target: 'https://pro-tukipiste.local',
-    // secure: false,
-    // },
-    // },
   },
-});
-
-exports.BrowserSync = ({ proxy, open }) => ({
-  // TODO: Ditch this.
-  plugins: [
-    new BrowserSyncPlugin(
-      // BrowserSync options
-      {
-        // browse to http://localhost:3000/ during development
-        host: 'localhost',
-        port: 3000,
-        proxy: proxy || 'https://wordpress.local',
-        plugins: ['bs-fullscreen-message'],
-        open: open || true,
-        files: ['**/*.css, **/*.js, **/*.php']
-      },
-      // plugin options
-      {
-        reload: false,
-        callback: function(instance) {
-          console.log(instance);
-          // console.log(this);
-        }
-      }
-    )
-  ]
 });
 
 exports.lintJavaScript = ({ include, exclude, options }) => ({
@@ -151,4 +115,8 @@ exports.autoprefix = () => ({
       require('autoprefixer'),
     ]),
   },
+});
+
+exports.generateSourceMaps = ({ type }) => ({
+  devtool: type,
 });
