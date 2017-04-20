@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dashboard -- npm run watch",
-    "watch": "ENV=development node config/browsersync.js",
+    "watch": "NODE_ENV=development node config/browsersync.js",
     "dev": "nodemon --watch ./config --exec \"npm run watch\"",
     "build": "webpack --env production --config ./config/webpack.config.js",
+    "build:dev": "webpack --env development --config ./config/webpack.config.js",
     "lint:js": "eslint app/ ./config/webpack.*.js --cache"
   },
-  "proxydomain": "https://wordpress.local",
+  "proxydomain": "https://skeleton-demo.local",
+  "locationFromRoot": "/wp-content/themes/theme-skeleton/",
   "keywords": [],
   "author": "",
   "license": "ISC",
