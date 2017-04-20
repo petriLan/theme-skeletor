@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const package = require(path.join(__dirname, '..', 'package.json'));
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
@@ -72,7 +73,7 @@ const developmentConfig = merge([
   parts.extractCSS({
     use: ['css-loader', parts.autoprefix(), 'stylus-loader'],
   }),
-  // parts.BrowserSync(),
+  parts.BrowserSync({ proxy: package.proxydomain, open: true }),
   /* parts.devServer({
     // Customize host/port here if needed
     host: process.env.HOST,

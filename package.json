@@ -10,6 +10,7 @@
     "build": "webpack --env production --config ./config/webpack.config.js",
     "lint:js": "eslint app/ ./config/webpack.*.js --cache"
   },
+  "proxydomain": "https://wordpress.local",
   "keywords": [],
   "author": "",
   "license": "ISC",

@@ -38,7 +38,7 @@ exports.devServer = ({ host, port } = {}) => ({
   },
 });
 
-exports.BrowserSync = () => ({
+exports.BrowserSync = ({ proxy, open }) => ({
   plugins: [
     new BrowserSyncPlugin(
       // BrowserSync options
@@ -46,9 +46,9 @@ exports.BrowserSync = () => ({
         // browse to http://localhost:3000/ during development
         host: 'localhost',
         port: 3000,
-        proxy: 'https://wordpress.local/',
+        proxy: proxy || 'https://wordpress.local',
         plugins: ['bs-fullscreen-message'],
-        open: true,
+        open: open || true,
         files: ['**/*.css, **/*.js, **/*.php']
       },
       // plugin options
