@@ -19,7 +19,9 @@ const PATHS = {
 const commonConfig = merge([
   {
     entry: {
-      app: PATHS.app,
+      client: path.join(PATHS.app, 'client'),
+      editor: path.join(PATHS.app, 'editor'),
+      admin: path.join(PATHS.app, 'admin')
     },
     output: {
       path: PATHS.build,
