@@ -48,7 +48,7 @@ exports.BrowserSync = () => ({
         port: 3000,
         proxy: 'https://wordpress.local/',
         plugins: ['bs-fullscreen-message'],
-        open: false,
+        open: true,
         files: ['**/*.css, **/*.js, **/*.php']
       },
       // plugin options
