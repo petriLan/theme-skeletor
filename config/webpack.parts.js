@@ -120,3 +120,21 @@ exports.autoprefix = () => ({
 exports.generateSourceMaps = ({ type }) => ({
   devtool: type,
 });
+
+exports.loadImages = ({ include, exclude } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader'
+      },
+      {
+        test: /\.(jpg|png|gif|JPG|PNG|GIF)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[hash].[ext]',
+        },
+      },
+    ],
+  },
+});

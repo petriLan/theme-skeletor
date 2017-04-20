@@ -9,6 +9,8 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 // const NyanProgressPlugin = require('nyan-progress-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const Imagemin = require('imagemin-webpack-plugin').default;
 
 const parts = require('./webpack.parts');
 const PATHS = {
@@ -55,6 +57,22 @@ const commonConfig = merge([
           },
         },
       }),
+      new CopyWebpackPlugin([
+        {
+          from: 'app/img',
+          to: 'img',
+          transform: (content, path) => {
+            return content;
+          }
+        },
+        {
+          from: 'app/img/**/*',
+          to: 'img/'
+        },
+      ]),
+      new Imagemin({
+
+      }),
 
       // new HtmlWebpackPlugin({
       // title: 'Webpack demo',
@@ -62,6 +80,7 @@ const commonConfig = merge([
     ],
   },
   parts.lintJavaScript({ include: PATHS.app }),
+  parts.loadImages(),
 ]);
 
 const productionConfig = merge([
