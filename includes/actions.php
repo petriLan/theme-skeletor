@@ -19,9 +19,8 @@ add_action('after_setup_theme', function() {
   //add_theme_support('soil-nice-search');
   //add_theme_support('soil-relative-urls'); // While relative urls sound nicer, they don't work in practice.
 
-  //if (getenv('WP_ENV') === 'production' && !is_admin()) {
-  //add_theme_support('soil-disable-asset-versioning');
-  //}
+  // We're versioning our assets manually.
+  add_theme_support('soil-disable-asset-versioning');
 
   register_nav_menus(array(
     'primary' => 'Primary navigation menu',

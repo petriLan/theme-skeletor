@@ -35,7 +35,7 @@ function theme_scripts() {
     'theme-css',
     "$styledir/build/app.css?version=$version", // The version parameter doesn't always work, this does
     false,
-    $version,
+    false, // version doesn't always work, included in url
     false
   );
 
@@ -50,7 +50,7 @@ function theme_scripts() {
     'theme-js',
     "$styledir/build/app.js?version=$version", // The version parameter doesn't always work, this does
     false,
-    $version,
+    false, // version doesn't always work, included in url
     true
   );
 }
