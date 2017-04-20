@@ -33,7 +33,7 @@ function theme_scripts() {
   );
   wp_enqueue_style(
     'theme-css',
-    "$styledir/build/app.css?version=$version", // The version parameter doesn't always work, this does
+    "$styledir/build/client.css?version=$version", // The version parameter doesn't always work, this does
     false,
     false, // version doesn't always work, included in url
     false
@@ -48,9 +48,31 @@ function theme_scripts() {
   );
   wp_enqueue_script(
     'theme-js',
-    "$styledir/build/app.js?version=$version", // The version parameter doesn't always work, this does
+    "$styledir/build/client.js?version=$version", // The version parameter doesn't always work, this does
     false,
     false, // version doesn't always work, included in url
     true
   );
 }
+
+add_action('admin_enqueue_scripts', 'admin_scripts');
+
+function admin_scripts() {
+  wp_enqueue_style(
+    'admin-custom-css',
+    "$styledir/build/admin.css?version=$version", // The version parameter doesn't always work, this does
+    false,
+    false, // version doesn't always work, included in url
+    false
+  );
+
+  wp_enqueue_script(
+    'admin-custom-js',
+    "$styledir/build/admin.js?version=$version", // The version parameter doesn't always work, this does
+    false,
+    false, // version doesn't always work, included in url
+    true
+  );
+}
+
+add_editor_style('build/editor.css');
