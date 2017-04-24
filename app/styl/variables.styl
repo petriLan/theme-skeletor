@@ -1,0 +1,20 @@
+json('../shared-variables.json');
+
+colors = {
+  white: #fff,
+  black: #000,
+};
+
+fonts = {
+  sans: 'Sans Serif'\, sans-serif,
+  serif: Serif\, sans-serif
+};
+
+// Stylus has a "bug", as it recognizes our variables as media types.
+mq = {
+  desktop: desktop,
+  laptop: laptop,
+  tablet: tablet,
+  hybrid: hybrid,
+  phone: phone
+}; // chain media queries! @media mq.tablet, mq.hybrid, mq.phone {}

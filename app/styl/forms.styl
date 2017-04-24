@@ -1,0 +1,71 @@
+.fc- {
+  &1-2 {
+    column(1/2, cycle: 2);
+  }
+
+  &1-1 {
+    column(1/1);
+  }
+
+  &row {
+    cf();
+    overflow: hidden;
+    padding-bottom: r(25px);
+
+    &:last-of-type {
+      // WPLF adds hidden inputs.
+      padding-bottom: 0;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="search"],
+    textarea {
+      width: 100%;
+      appearance: none;
+      outline: 0;
+      border: 0;
+      background: colors.white;
+      padding: r(16px) r(15px);
+      overflow: hidden;
+      border: 1px solid darken(colors.white, 10%);
+    }
+
+    label {
+      span {
+        display: block;
+      }
+
+      strong {
+        margin-bottom: r(5px);
+        display: block;
+      }
+    }
+
+    .help-text {
+      // Use to provide additional information from field.
+      font-size: r(13px);
+      line-height: r(22px);
+      font-weight: 400;
+      display: inline-block;
+      margin-top: r(10px);
+    }
+  }
+}
+
+/* Sample HTML:
+<div class="fc-row">
+  <div class="fc-1-2">
+    <label>
+      <strong>Name</strong>
+      <input type="text">
+    </label>
+  </div>
+  <div class="fc-1-2">
+    <label>
+      <strong>Email</strong>
+      <input type="email">
+    </label>
+  </div>
+</div>
+*/

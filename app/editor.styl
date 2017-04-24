@@ -1,3 +1,8 @@
-body {
-  font-family: sans-serif
-}
+@import 'styl/variables';
+@import 'styl/functions';
+
+// Order so that overriding rules appear later.
+@import 'styl/helpers';
+@import 'styl/typography';
+@import 'styl/buttons';
+@import 'styl/forms';

@@ -1,0 +1,98 @@
+button() {
+  transition: 0.3s ease-in;
+  text-transform: uppercase;
+  letter-spacing: r(0.5px);
+  display: inline-block;
+  cursor: pointer;
+  appearance: none; // Safari does nasty things without
+  padding: r(20px) r(14px);
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.4;
+  text-decoration: none;
+  border: r(2px) solid transparent;
+
+  &:focus, &:hover, &:active, &.active {
+    transition: 0.3s ease-out;
+    outline: 0; // Provide good focus styles!
+  }
+}
+
+.button {
+  button();
+  background: colors.black;
+  color: colors.white;
+
+  &:focus, &:hover, &:active, &.active {
+    background: colors.white;
+    color: colors.black;
+  }
+
+  // auto override
+  &.bg {
+    for key, value in colors {
+      &--{key} {
+        background: value;
+
+        &:focus, &:hover, &:active, &.active {
+          background: invert(value);
+        }
+      }
+    }
+  }
+
+  &.color {
+    for key, value in colors {
+      &--{key} {
+        color: value;
+
+        &:focus, &:hover, &:active, &.active {
+          color: invert(value);
+        }
+      }
+    }
+  }
+
+  &--hollow {
+    background: transparent;
+    border: r(2px) solid colors.black
+    color: colors.black;
+
+    &:focus, &:hover, &:active, &.active {
+      background: colors.black
+      color: colors.white
+    }
+
+    &.bg {
+      for key, value in colors {
+        &--{key} {
+          background: transparent;
+          border-color: value;
+
+          &:focus, &:hover, &:active, &.active {
+            background: value;
+          }
+        }
+      }
+    }
+
+    &.color {
+      for key, value in colors {
+        &--{key} {
+          color: value;
+
+          &:focus, &:hover, &:active, &.active {
+            color: invert(value);
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Sample HTML:
+<button class="button">Fill button!</button>
+<button class="button button--hollow">Hollow button</button>
+<button class="button bg--green">Green button!</button>
+<button class="button button--hollow bg--green">Hollow green button!</button>
+*/
