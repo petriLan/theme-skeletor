@@ -1,0 +1,14 @@
+.container {
+  width: 100%;
+  max-width: r(1032px); // 8px "grid".
+  margin-left: auto;
+  margin-right: @margin-left;
+
+  @media mq.desktop {
+    max-width: r(1032px); // 8px "grid".
+  }
+
+  @media mq.laptop, mq.tablet, mq.hybrid, mq.phone {
+    max-width: 96%;
+  }
+}
