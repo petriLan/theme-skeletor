@@ -58,6 +58,7 @@ function theme_scripts() {
 add_action('admin_enqueue_scripts', 'admin_scripts');
 
 function admin_scripts() {
+  $styledir = get_stylesheet_directory_uri();
   wp_enqueue_style(
     'admin-custom-css',
     "$styledir/build/admin.css?version=$version", // The version parameter doesn't always work, this does
