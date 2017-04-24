@@ -1,16 +1,8 @@
-import component from './component';
 import './client.styl';
+import './js/link-patcher'; // Patches links automatically
+import './js/skip-link-focus'; // Configures skip link
 
-document.body.appendChild(component('Hello you!'));
-document.body.appendChild(component('Hello yourself!'));
-
-console.log('Well hello');
-
-// ontämäkinsaatanatyömaa
-// if (document.getElementById('__bs_script__')) {
-  // window.addEventListener('beforeunload', e => {
-    // const msg = 'Something (Browsersync) is trying to reload the page. Allow?';
-    // e.returnValue = msg;
-    // return msg;
-  // });
-// }
+// import helloworld from './js/helloworld';
+/* document.querySelector('#content').appendChild(
+  helloworld('Hello you!')
+); */

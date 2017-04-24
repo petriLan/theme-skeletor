@@ -52,6 +52,15 @@ get_header(); ?>
         </button>
       </div>
     </div>
+
+    <div class="button-group">
+      <div class="container">
+        <a class="button" href="https://wikipedia.org/wiki/Cat">Link</a>
+        <a class="button button--hollow" href="https://wikipedia.org/wiki/Dog">
+          Link, hollow
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 <?php get_footer(); ?>
