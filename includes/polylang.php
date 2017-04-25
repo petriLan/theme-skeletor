@@ -12,7 +12,8 @@ if (function_exists('pll_register_string')) {
     'Back', 'Back',
     'Search', 'Search',
     'Instruct user to enter search terms', 'Enter search term',
-    'Inform user about no results from search', 'No search results'
+    'Inform user about no results from search', 'No search results',
+    'News', 'News'
   ];
 
   foreach ($strings as $ctx => $value) {

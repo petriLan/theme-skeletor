@@ -41,5 +41,10 @@ a {
 ul, ol {
   margin: 0;
   padding: 0;
-  margin: 0 r(25px) r(25px) r(25px)
+  margin: 0 r(25px) r(25px) r(25px);
+
+  ul, ol {
+    // Nested lists shouldn't look weird.
+    margin-bottom: 0;
+  }
 }
