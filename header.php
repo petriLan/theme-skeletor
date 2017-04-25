@@ -18,7 +18,7 @@
   <header id="navigation">
     <div class="container">
       <?php wp_nav_menu([
-        'theme_location' =>' primary'
+        'theme_location' => 'primary'
       ]); ?>
     </div>
   </header>
