@@ -6,17 +6,21 @@ if(function_exists("acf_add_options_page")) {
   ]);
 
   if (function_exists('pll_register_string')) {
-    acf_add_options_sub_page(array(
-      'page_title' => 'Finnish',
-      'menu_title' => 'Finnish',
-      'parent_slug' => $parent['menu_slug'],
-      'menu_slug' => 'acf-options'
-    ));
+    $names = pll_languages_list(['fields' => 'name']);
 
-    acf_add_options_sub_page(array(
-      'page_title' => 'English',
-      'menu_title' => 'English',
-      'parent_slug' => $parent['menu_slug'],
-    ));
+
+    foreach ($names as $name) {
+      $fields = [
+        'page_title' => $name,
+        'menu_title' => $name,
+        'parent_slug' => $parent['menu_slug']
+      ];
+
+      if ($name === 'Suomi') {
+        $fields['menu_slug'] = 'acf-options';
+      }
+
+      acf_add_options_sub_page($fields);
+    }
   }
 }
