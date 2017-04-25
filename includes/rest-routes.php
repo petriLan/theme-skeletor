@@ -7,4 +7,4 @@
       return new WP_REST_Response(array("posts" => array("Sample 1", "Sample 2")));
     }
   ));
-}); /*
+}); */
