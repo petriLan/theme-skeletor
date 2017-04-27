@@ -2,7 +2,7 @@
 if (function_exists('pll_register_string')) {
   // Remember, it's the second parameter that you use for pll_e
   $strings = [
-    // 'context_string', 'Use this value in pll__',
+    // 'context_string' => 'Use this value in pll__',
     'Skip to content button' => 'Skip to content',
     'Log in' => 'Log in',
     'Log out' => 'Log out',
