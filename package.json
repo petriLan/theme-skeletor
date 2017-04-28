@@ -12,7 +12,7 @@
     "lint:js": "eslint app/ ./config/webpack.*.js --cache"
   },
   "proxydomain": "https://skeleton.local",
-  "locationFromRoot": "/wp-content/themes/theme-skeleton/",
+  "locationFromRoot": "/wp-content/themes/theme-skeleton/build/",
   "keywords": [],
   "author": "",
   "license": "ISC",
