@@ -17,5 +17,12 @@ Webfonts are a bit tricky. `@font-face` works, but a bit different than you migh
 }
 ```
 
+# Deploying
+This is a Composer package. That means that you normally require it in your projects composer.json. See [redandbluefi/skeleton](https://github.com/redandbluefi/skeleton). You don't deploy _this_ repository, you deploy the parent repository which has listed this repository as a dependency. 
+
+If this is a private repository, you must add a deploy key to the server you wish to deploy on. https://developer.github.com/guides/managing-deploy-keys/#deploy-keys
+
+Build is triggered automatically when `composer install` or `composer update` is ran. See composer.json. 
+
 # Developing the skeleton itself
 Running `yarn start` will present you with a nice dashboard. That isn't very helpful when you're editing Webpack configation and having to manually reload your configuration every time. Use `yarn run dev` to run Webpack using Nodemon, which will automatically restart when your config changes.
