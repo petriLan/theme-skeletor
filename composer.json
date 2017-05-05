@@ -1,11 +1,19 @@
 {
-    "name": "redandblue/theme-skeleton",
-    "type": "wordpress-theme",
-    "authors": [
-        {
-            "name": "Christian Nikkanen",
-            "email": "hi@kisu.li"
-        }
+  "name": "redandblue/theme-skeleton",
+  "type": "wordpress-theme",
+  "authors": [
+    {
+      "name": "Christian Nikkanen",
+      "email": "hi@kisu.li"
+    }
+  ],
+  "require": {},
+  "scripts": {
+    "post-install-cmd": [
+      "npm run build"
     ],
-    "require": {}
+    "post-update-cmd": [
+      "npm run build"
+    ]
+  }
 }
