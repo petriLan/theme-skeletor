@@ -24,5 +24,20 @@ If this is a private repository, you must add a deploy key to the server you wis
 
 Build is triggered automatically when `composer install` or `composer update` is ran. See composer.json. 
 
+## Tagging
+Composer won't use the master branch. Instead it uses tags. When you have something you want to deploy, commit your changes, and then run `git tag [your-version-here]`. If you are unsure what version number to use for the tag, run `git tag` to see a list of tags. Semantic versioning is just about the only versioning that makes sense, so use that. Basics of semantic versioning: **major**.**minor**.**patch**
+
+Increment the *major* number if you introduce breaking changes. Doesn't really happen in themes.
+Increment the *minor* number if you add features. 
+Increment the *patch* number if you fix bugs. 
+
+So if the current version is 0.3.1, and you add a new feature, run `git tag 0.4`.
+To make the tag available for Composer, run `git push origin 0.4`. 
+
+Then when you run `composer update` on projects that have required this theme, you should see output similar to this: 
+```
+- Updating redandblue/theme-skeleton (0.1 => 0.1.1):  Checking out 7e4615cfd8
+```
+
 # Developing the skeleton itself
 Running `yarn start` will present you with a nice dashboard. That isn't very helpful when you're editing Webpack configation and having to manually reload your configuration every time. Use `yarn run dev` to run Webpack using Nodemon, which will automatically restart when your config changes.
