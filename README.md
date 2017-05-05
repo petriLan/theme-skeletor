@@ -39,5 +39,8 @@ Then when you run `composer update` on projects that have required this theme, y
 - Updating redandblue/theme-skeleton (0.1 => 0.1.1):  Checking out 7e4615cfd8
 ```
 
+## During early development
+Admittedly, the tagging and deploying process can be a bit cumbersome, but that is at least partly on purpose to help keep control on the deploying process. During early development when there's no users or no one cares, you can use `dev-master` instead of `*` (or `1.0^` on plugins and such) as package version to tell Composer to use the master branch instead of tags (versions), and then `composer update` will not care about tags.
+
 # Developing the skeleton itself
 Running `yarn start` will present you with a nice dashboard. That isn't very helpful when you're editing Webpack configation and having to manually reload your configuration every time. Use `yarn run dev` to run Webpack using Nodemon, which will automatically restart when your config changes.
