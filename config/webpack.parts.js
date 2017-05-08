@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
 const pjson = require(path.join(__dirname, '..', 'package.json'));
 
 // devServer doesn't work yet!
