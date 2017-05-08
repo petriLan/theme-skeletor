@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const pjson = require(path.join(__dirname, '..', 'package.json'));
 
+// devServer doesn't work yet!
 exports.devServer = ({ host, port } = {}) => ({
   devServer: {
     // Enable history API fallback so HTML5 History API based
@@ -24,6 +26,14 @@ exports.devServer = ({ host, port } = {}) => ({
       errors: true,
       warnings: true,
     },
+    proxy: [
+      {
+        path: '/*',
+        target: pjson.proxydomain,
+        secure: false,
+      },
+    ],
+    publicPath: pjson.locationFromRoot,
   },
 });
 
