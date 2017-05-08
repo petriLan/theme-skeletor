@@ -10,7 +10,7 @@
   "require": {},
   "require-dev": {
     "squizlabs/php_codesniffer": "3.*"
-  }
+  },
   "scripts": {
     "post-install-cmd": [
       "npm run build"
