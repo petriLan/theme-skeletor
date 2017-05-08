@@ -1,14 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const package = require(path.join(__dirname, '..', 'package.json'));
+const pjson = require(path.join(__dirname, '..', 'package.json'));
 
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 // const NpmInstallPlugin = require('npm-install-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 // const NyanProgressPlugin = require('nyan-progress-webpack-plugin');
-const DashboardPlugin = require('webpack-dashboard/plugin');
+// const DashboardPlugin = require('webpack-dashboard/plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Imagemin = require('imagemin-webpack-plugin').default;
 
@@ -23,16 +23,16 @@ const commonConfig = merge([
     entry: {
       client: path.join(PATHS.app, 'client'),
       editor: path.join(PATHS.app, 'editor'),
-      admin: path.join(PATHS.app, 'admin')
+      admin: path.join(PATHS.app, 'admin'),
     },
     output: {
       path: PATHS.build,
       filename: '[name].js',
-      publicPath: package.locationFromRoot
+      publicPath: pjson.locationFromRoot,
     },
     target: 'web',
     node: {
-      fs: "empty"
+      fs: 'empty',
     },
     plugins: [
       new CaseSensitivePathsPlugin(), // complain about capitalisation
@@ -61,13 +61,13 @@ const commonConfig = merge([
         {
           from: 'app/img',
           to: 'img',
-          transform: (content, path) => {
+          transform: (content) => {
             return content;
-          }
+          },
         },
         {
           from: 'app/img/**/*',
-          to: 'img/'
+          to: 'img/',
         },
       ]),
       new Imagemin({
@@ -99,7 +99,7 @@ const developmentConfig = merge([
   {
     plugins: [
       // new DashboardPlugin(),
-    ]
+    ],
   },
   parts.extractCSS({
     use: ['css-loader', parts.autoprefix(), 'stylus-loader'],

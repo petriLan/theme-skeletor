@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const AnsiToHTML = require('ansi-to-html');
 const convert = new AnsiToHTML();
-const package = require(path.join(__dirname, '..', 'package.json'));
+const pjson = require(path.join(__dirname, '..', 'package.json'));
 const cp = require('child_process');
 
 const webpackConfig = require('./webpack.config')('development');
@@ -26,7 +26,7 @@ bundler.plugin('done', function(stats) {
           'left: 0',
           'opacity: 0.9',
           'box-sizing: border-box',
-          'z-index: 2147483647'
+          'z-index: 2147483647',
         ],
 
         '.bs-pretty-message__wrapper': [
@@ -38,22 +38,22 @@ bundler.plugin('done', function(stats) {
           'padding: 1rem',
           // 'height: 100vh',
           'height: auto',
-          'box-sizing: border-box'
+          'box-sizing: border-box',
         ],
 
         '.bs-pretty-message__header': [
           'font-family: "helvetica neue", helvetica, sans-serif',
-          'box-sizing: border-box'
+          'box-sizing: border-box',
         ],
 
         '.bs-pretty-message__content': [
           'font-family: Source Code Pro, Consolas, monaco, monospace',
-          'box-sizing: border-box'
-        ]
+          'box-sizing: border-box',
+        ],
       },
       title: 'Error:',
       body: convert.toHtml(stats.toString({ colors: true })),
-      timeout: 100000
+      timeout: 100000,
     });
   } else {
     console.log('Updating styles');
@@ -75,15 +75,15 @@ bundler.plugin('done', function(stats) {
 browserSync.init({
   host: 'localhost',
   port: 3000,
-  proxy: package.proxydomain,
+  proxy: pjson.proxydomain,
   open: true,
   files: ['**/*.css, **/*.js, **/*.php'],
   logFileChanges: false,
   middleware: [
     webpackDevMiddleware(bundler, {
       publicPath: webpackConfig.output.publicPath,
-      stats: { colors: true }
-    })
+      stats: { colors: true },
+    }),
   ],
   plugins: ['bs-pretty-message', 'webpack-browser-sync-css-hmr'],
 });

@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 exports.devServer = ({ host, port } = {}) => ({
@@ -18,22 +17,24 @@ exports.devServer = ({ host, port } = {}) => ({
     //
     // 0.0.0.0 is available to all network devices
     // unlike default `localhost`.
-    host: process.env.HOST, // Defaults to `localhost`
-    port: process.env.PORT, // Defaults to 8080
+    host: host || process.env.HOST, // Defaults to `localhost`
+    port: port || process.env.PORT, // Defaults to 8080
 
     overlay: {
       errors: true,
-      warnings: true
+      warnings: true,
     },
   },
 });
 
-exports.lintJavaScript = ({ include, exclude, options }) => ({
+exports.lintJavaScript = ({ include, exclude }) => ({
   module: {
     rules: [
       {
         test: /\.js$/,
         enforce: 'pre',
+        include,
+        exclude,
 
         loader: 'eslint-loader',
         options: {
@@ -77,7 +78,7 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
           ],
           import: [
             // '~jeet/jeet'
-          ]
+          ],
         },
       },
     }),
@@ -139,12 +140,12 @@ exports.generateSourceMaps = ({ type }) => ({
   devtool: type,
 });
 
-exports.loadImages = ({ include, exclude } = {}) => ({
+exports.loadImages = () => ({
   module: {
     rules: [
       {
         test: /\.svg$/,
-        loader: 'svg-inline-loader'
+        loader: 'svg-inline-loader',
       },
       {
         test: /\.(jpg|png|gif|JPG|PNG|GIF)$/,
