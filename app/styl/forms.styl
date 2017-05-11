@@ -1,3 +1,22 @@
+/* http://stackoverflow.com/a/2610741/4671020 */
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color: currentColor;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: currentColor;
+  opacity: 1;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: currentColor;
+  opacity: 1;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: currentColor;
+}
+
 .fc- {
   &1-2 {
     column(1/2, cycle: 2);
