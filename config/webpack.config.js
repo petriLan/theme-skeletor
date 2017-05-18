@@ -89,12 +89,20 @@ const commonConfig = merge([
   }),
 ]);
 
-const productionConfig = merge([
-  parts.extractCSS({
-    use: ['css-loader', parts.autoprefix(), 'stylus-loader'],
-  }),
-  parts.generateSourceMaps({ type: 'hidden-source-map' }),
-]);
+const productionConfig = merge(
+  [
+    parts.extractCSS({
+      use: ['css-loader', parts.autoprefix(), 'stylus-loader'],
+    }),
+    parts.generateSourceMaps({ type: 'hidden-source-map' }),
+    {
+      plugins: [
+        new webpack.optimize.UglifyJsPlugin(),
+      ],
+    }
+  ]
+);
+
 
 const developmentConfig = merge([
   {
