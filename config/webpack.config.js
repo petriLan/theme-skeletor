@@ -80,6 +80,7 @@ const commonConfig = merge([
     ],
   },
   parts.lintJavaScript({ include: PATHS.app }),
+  parts.transpileJavaScript(),
   parts.loadImages(),
   parts.loadFonts({
     options: {

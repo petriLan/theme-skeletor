@@ -38,6 +38,23 @@ exports.devServer = ({ host, port } = {}) => ({
   },
 });
 
+exports.transpileJavaScript = () => ({
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['env'],
+          },
+        },
+      },
+    ],
+  },
+});
+
 exports.lintJavaScript = ({ include, exclude }) => ({
   module: {
     rules: [
