@@ -98,8 +98,9 @@ const productionConfig = merge(
     {
       plugins: [
         new webpack.optimize.UglifyJsPlugin(),
+        new webpack.HashedModuleIdsPlugin(),
       ],
-    }
+    },
   ]
 );
 
@@ -108,6 +109,7 @@ const developmentConfig = merge([
   {
     plugins: [
       // new DashboardPlugin(),
+      new webpack.NamedModulesPlugin(),
     ],
   },
   parts.extractCSS({
