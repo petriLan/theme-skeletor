@@ -113,10 +113,10 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
   ],
 });
 
-exports.extractCSS = ({ include, exclude, use }) => {
+exports.extractCSS = ({ filename, include, exclude, use }) => {
   // Output extracted CSS to a file
   const plugin = new ExtractTextPlugin({
-    filename: '[name].[hash].css',
+    filename: filename || '[name].[hash].css',
   });
 
   return {

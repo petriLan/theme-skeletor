@@ -113,6 +113,7 @@ const developmentConfig = merge([
     ],
   },
   parts.extractCSS({
+    filename: '[name].css',
     use: ['css-loader', parts.autoprefix(), 'stylus-loader'],
   }),
   parts.generateSourceMaps({ type: 'cheap-module-source-map' }),
