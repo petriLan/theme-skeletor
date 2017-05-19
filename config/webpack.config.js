@@ -27,7 +27,7 @@ const commonConfig = merge([
     },
     output: {
       path: PATHS.build,
-      filename: '[name].js',
+      filename: '[name].[hash].js', // We have no HMR for JS, so might as well use hashes all the time.
       publicPath: pjson.locationFromRoot,
     },
     target: 'web',
