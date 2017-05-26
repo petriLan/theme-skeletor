@@ -7,82 +7,32 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Page Speed') > -1) {
   add_action('wp_enqueue_scripts', 'theme_scripts');
 }
 
-function theme_scripts() {
-  // Running npm install will create a new environment variable that we will use
-  // as our version variable.
-  $hash = getenv('GIT_COMMIT_HASH');
-  $isdev = getenv('WP_ENV') !== 'production' ? true : false;
-  $styledir = get_stylesheet_directory_uri();
+define('WPT_ENQUEUE_STRIP_PATH', '/data/wordpress/htdocs');
 
-  if ($isdev) {
-    $version = date('U');
-  } else {
-    $version = $hash;
-  }
+function theme_scripts() {
+  $styledir = get_stylesheet_directory();
 
   if (!is_admin()) {
     wp_deregister_script('jquery');
   }
 
-  wp_enqueue_style(
-    'theme-fonts',
-    'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700',
-    false,
-    false,
-    false
-  );
-  wp_enqueue_style(
-    'theme-css',
-    "$styledir/build/client.css?version=$version", // The version parameter doesn't always work, this does
-    false,
-    false, // version doesn't always work, included in url
-    false
-  );
+  \rnb\core\enqueue("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700", [], true);
+  \rnb\core\enqueue($styledir . '/build/client.*.css');
 
-  wp_enqueue_script(
-    'font-awesome',
-    'https://use.fontawesome.com/b5f5b873c1.js', // Generate own!
-    false,
-    false,
-    true
-  );
-  wp_enqueue_script(
-    'theme-js',
-    "$styledir/build/client.js?version=$version", // The version parameter doesn't always work, this does
-    false,
-    false, // version doesn't always work, included in url
-    true
-  );
+  \rnb\core\enqueue("https://use.fontawesome.com/[INSERT_HERE].js", [], true);
+  \rnb\core\enqueue("https://cdn.polyfill.io/v2/polyfill.min.js?features=default,es6,fetch", [], true);
+  \rnb\core\enqueue($styledir . '/build/client.*.js');
+
+  // wp_localize_script('client-js', 'pll', pl_get_all_translations());
 }
 
 add_action('admin_enqueue_scripts', 'admin_scripts');
 
 function admin_scripts() {
-  $hash = getenv('GIT_COMMIT_HASH');
-  $isdev = getenv('WP_ENV') !== 'production' ? true : false;
-  $styledir = get_stylesheet_directory_uri();
+  $styledir = get_stylesheet_directory();
 
-  if ($isdev) {
-    $version = date('U');
-  } else {
-    $version = $hash;
-  }
-
-  wp_enqueue_style(
-    'admin-custom-css',
-    "$styledir/build/admin.css?version=$version", // The version parameter doesn't always work, this does
-    false,
-    false, // version doesn't always work, included in url
-    false
-  );
-
-  wp_enqueue_script(
-    'admin-custom-js',
-    "$styledir/build/admin.js?version=$version", // The version parameter doesn't always work, this does
-    false,
-    false, // version doesn't always work, included in url
-    true
-  );
+  \rnb\core\enqueue($styledir . '/build/admin.*.css');
+  \rnb\core\enqueue($styledir . '/build/admin.*.js');
 }
 
 add_editor_style('build/editor.css');
