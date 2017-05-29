@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./tests/wpcs/vendor/bin/phpcs --extensions=php --standard=./phpcs.xml -n -p -s --ignore=/tests/ .",
+    "test": "./tests/wpcs/vendor/bin/phpcs --extensions=php --standard=./phpcs.xml -n -p -s --ignore=/tests/ --ignore=/vendor/ .",
     "start": "webpack-dashboard -- npm run watch",
     "watch": "NODE_ENV=development node config/browsersync.js",
     "dev": "nodemon --watch ./config --exec \"npm run watch\"",
