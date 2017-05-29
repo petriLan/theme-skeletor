@@ -11,7 +11,7 @@ add_action('after_setup_theme', function() {
     'caption',
   ));
 
-  $GLOBALS['content_width'] =  700; // Set to whatever your *content* width is.
+  $GLOBALS['content_width'] = 700; // Set to whatever your *content* width is.
 
   add_theme_support('soil-clean-up');
   add_theme_support('soil-disable-trackbacks');

@@ -7,24 +7,24 @@ add_filter('mce_buttons_2', function($buttons) {
 add_filter('tiny_mce_before_init', function($init_array) {
   $style_formats = array(
     // Each array child is a format with it's own settings
-    array(
+    [
       'title' => 'Quote',
       'block' => 'blockquote',
       'classes' => 'quote',
       'wrapper' => true,
-    ),
+    ],
 
-    array(
+    [
       "title" => "Smaller text",
       "inline" => "small",
-      "classes" => "smaller"
-    ),
+      "classes" => "smaller",
+    ],
 
-    array(
+    [
       "title" => "Button",
       "classes" => "button",
-      "inline" => "a"
-    )
+      "inline" => "a",
+    ],
   );
 
   $init_array['style_formats'] = json_encode($style_formats);

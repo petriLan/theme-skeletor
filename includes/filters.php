@@ -23,7 +23,7 @@ namespace rnb\themes {
       'localhost' => $dev,
       '.seravo' => $production,
       '.wp-palvelu' => $production,
-      get_site_url() => $production
+      get_site_url() => $production,
     ];
 
     foreach ($domains as $domain => $tag) {

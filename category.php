@@ -1,1 +1,1 @@
-<?php \rnb\template\get('archive.php'); ?>
+<?php \rnb\template\get('archive.php');

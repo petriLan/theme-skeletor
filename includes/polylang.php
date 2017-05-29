@@ -13,7 +13,7 @@ if (function_exists('pll_register_string')) {
     'Search' => 'Search',
     'Instruct user to enter search term' => 'Enter search term',
     'Inform user about no results from search' => 'No search results',
-    'News' => 'News'
+    'News' => 'News',
   ];
 
   foreach ($strings as $ctx => $value) {
@@ -28,8 +28,8 @@ else {
     return $string;
   }
 
-  function pll_e() {
-    echo $string;
+  function pll_e($string) {
+    echo esc_html($string);
   }
 
   function pll_get_term($term) {

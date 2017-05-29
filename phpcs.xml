@@ -118,7 +118,26 @@
     <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
 
     <exclude name="WordPress.Arrays.ArrayDeclaration.NoSpaceAfterOpenParenthesis" />
+    <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceAfterOpenParenthesis" />
+    <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceBeforeCloseParenthesis" />
+    <exclude name="Squiz.Strings.DoubleQuoteUsage.NotRequired" />
+    <exclude name="WordPress.WhiteSpace.OperatorSpacing.NoSpaceBefore" />
+    <exclude name="WordPress.WhiteSpace.OperatorSpacing.NoSpaceAfter" />
+    <exclude name="WordPress.Arrays.ArrayDeclarationSpacing.NoSpaceAfterArrayOpener" />
+    <exclude name="WordPress.Arrays.ArrayDeclarationSpacing.NoSpaceBeforeArrayCloser" />
+
+    <!-- Opening brace must not be the last content on the line -->
+    <exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie.ContentAfterBrace" />
+
+    <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterOpen" />
+    <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace" />
+    <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterOpen" />
+		<exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound" />
+		<exclude name="WordPress.Arrays.ArrayDeclaration.CloseBraceNewLine" />
   </rule>
+
+  <!-- Enforce double quotes -->
+  <rule ref="Squiz.Strings.DoubleQuoteUsage" />
 
   <rule ref="PEAR.Functions.FunctionCallSignature">
     <properties>
@@ -126,4 +145,5 @@
       <property name="requiredSpacesBeforeClose" value="0"/>
     </properties>
   </rule>
+
 </ruleset>

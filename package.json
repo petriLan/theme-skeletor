@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "./tests/wpcs/vendor/bin/phpcs --extensions=php --standard=./phpcs.xml -n -p -s --ignore=/tests/ .",
     "start": "webpack-dashboard -- npm run watch",
     "watch": "NODE_ENV=development node config/browsersync.js",
     "dev": "nodemon --watch ./config --exec \"npm run watch\"",
     "build": "webpack --env production --config ./config/webpack.config.js",
     "build:dev": "webpack --env development --config ./config/webpack.config.js",
-    "lint:js": "eslint app/ ./config/webpack.*.js --cache"
+    "lint:js": "eslint app/ ./config/webpack.*.js --cache",
+    "pre-push": "npm run test"
   },
   "proxydomain": "https://skeleton.local",
   "locationFromRoot": "/wp-content/themes/theme-skeleton/build/",
@@ -32,6 +34,7 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "html-webpack-plugin": "^2.28.0",
+    "husky": "^0.13.4",
     "imagemin-webpack-plugin": "^1.4.4",
     "jeet": "^7.1.0",
     "nodemon": "^1.11.0",

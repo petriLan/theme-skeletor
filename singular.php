@@ -18,7 +18,7 @@
       // If post has pagination (<!--nextpage-->). Otherwise no effect.
       wp_link_pages([
         'before' => '<div class="entry-pagination">',
-        'after' => '</div>'
+        'after' => '</div>',
       ]);
     ?>
     </div>

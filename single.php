@@ -1,1 +1,1 @@
-<?php \rnb\template\get('singular.php'); ?>
+<?php \rnb\template\get('singular.php');
