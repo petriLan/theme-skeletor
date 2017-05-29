@@ -11,7 +11,7 @@
     "build": "webpack --env production --config ./config/webpack.config.js",
     "build:dev": "webpack --env development --config ./config/webpack.config.js",
     "lint:js": "eslint app/ ./config/webpack.*.js --cache",
-    "pre-push": "npm run test"
+    "prepush": "npm run test"
   },
   "proxydomain": "https://skeleton.local",
   "locationFromRoot": "/wp-content/themes/theme-skeleton/build/",
