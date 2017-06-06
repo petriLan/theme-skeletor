@@ -134,6 +134,7 @@
     <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterOpen" />
 		<exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound" />
 		<exclude name="WordPress.Arrays.ArrayDeclaration.CloseBraceNewLine" />
+    <exclude name="WordPress.Arrays.ArrayKeySpacingRestrictions.NoSpacesAroundArrayKeys" />
   </rule>
 
   <!-- Enforce double quotes -->
