@@ -2,9 +2,9 @@
 /**
  * Template for single item.
  *
- * @param array $data
+ * @param array props
  */
-function single_item($data = []) { ?>
+function single_item(props = []) { ?>
   <article>
     <h3><?=$data['title'] ?? 'Default title'?></h3>
     <?=\rnb\template\readmore()?>
