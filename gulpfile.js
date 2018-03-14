@@ -10,6 +10,7 @@ const plumber       = require('gulp-plumber');
 const concat        = require('gulp-concat');
 const uglify        = require('gulp-uglify');
 const imagemin      = require('gulp-imagemin');
+const pxtorem       = require('gulp-pxtorem');
 const runSequence   = require('run-sequence');
 const jeet          = require('jeet');
 const config        = require('./config.json');
@@ -96,6 +97,11 @@ assets.css.forEach(function(asset) {
           'include css': true
         }))
         .pipe(autoprefixer('last 3 version', 'safari 5', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+        .pipe(pxtorem({
+          replace: true,
+          propList: ['*'],
+          mediaQuery: false
+        }))
         .pipe(minifyCSS())
         .pipe(gulp.dest(asset.dest))
         .pipe(browserSync.stream());

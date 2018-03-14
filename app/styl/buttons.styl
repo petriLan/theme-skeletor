@@ -1,16 +1,16 @@
 button() {
   transition: 0.3s ease-in;
   text-transform: uppercase;
-  letter-spacing: r(0.5px);
+  letter-spacing: 0.5px;
   display: inline-block;
   cursor: pointer;
   appearance: none; // Safari does nasty things without
-  padding: r(20px) r(14px);
+  padding: 20px 14px;
   text-align: center;
   font-size: 1rem;
   line-height: 1.4;
   text-decoration: none;
-  border: r(2px) solid transparent;
+  border: 2px solid transparent;
 
   &:focus, &:hover, &:active, &.active {
     transition: 0.3s ease-out;
@@ -55,7 +55,7 @@ button() {
 
   &--hollow {
     background: transparent;
-    border: r(2px) solid colors.black
+    border: 2px solid colors.black
     color: colors.black;
 
     &:focus, &:hover, &:active, &.active {

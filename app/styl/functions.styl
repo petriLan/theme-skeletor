@@ -1,18 +1,3 @@
-remify(value) {
-  u = unit(value);
-
-  if (u is 'px') {
-    return unit(value/16, 'rem');
-  } else {
-    return unit(value, u);
-  }
-}
-
-r(value) {
-  // shorthand
-  remify(value)
-}
-
 // Jeet removed aliases
 col() {
   column(arguments)
