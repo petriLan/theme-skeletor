@@ -3,8 +3,24 @@
   "type": "wordpress-theme",
   "authors": [
     {
-      "name": "Christian Nikkanen",
-      "email": "hi@kisu.li"
+      "name": "Jari Savolainen",
+      "email": "jari@redandblue.fi",
+      "homepage": "https://github.com/orgs/redandbluefi/people/JariSavolainen"
+    },
+    {
+      "name": "Tiia Nyholm",
+      "email": "tiia@redandblue.fi",
+      "homepage": "https://github.com/orgs/redandbluefi/people/T0kya"
+    },
+    {
+      "name": "Hannu Kärkkäinen",
+      "email": "hannu@redandblue.fi",
+      "homepage": "https://github.com/orgs/redandbluefi/people/Hellenic"
+    },
+    {
+      "name": "Eemeli Makkonen",
+      "email": "eemeli@redandblue.fi",
+      "homepage": "https://github.com/orgs/redandbluefi/people/eemeeli"
     }
   ],
   "require": {},
@@ -12,11 +28,7 @@
     "squizlabs/php_codesniffer": "3.*"
   },
   "scripts": {
-    "post-install-cmd": [
-      "npm run build"
-    ],
-    "post-update-cmd": [
-      "npm run build"
-    ]
+    "post-install-cmd": ["npm run build"],
+    "post-update-cmd": ["npm run build"]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "skeleton",
+  "name": "theme-skeleton",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,28 @@
     "dev": "nodemon --watch gulpfile.js --exec \"gulp dev\""
   },
   "keywords": [],
-  "author": "",
+  "contributors": [
+    {
+      "name": "Jari Savolainen",
+      "email": "jari@redandblue.fi",
+      "url": "https://github.com/orgs/redandbluefi/people/JariSavolainen"
+    },
+    {
+      "name": "Tiia Nyholm",
+      "email": "tiia@redandblue.fi",
+      "url": "https://github.com/orgs/redandbluefi/people/T0kya"
+    },
+    {
+      "name": "Hannu Kärkkäinen",
+      "email": "hannu@redandblue.fi",
+      "url": "https://github.com/orgs/redandbluefi/people/Hellenic"
+    },
+    {
+      "name": "Eemeli Makkonen",
+      "email": "eemeli@redandblue.fi",
+      "url": "https://github.com/orgs/redandbluefi/people/eemeeli"
+    }
+  ],
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.18.12",
