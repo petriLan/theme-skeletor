@@ -29,6 +29,9 @@
     "phpunit/phpunit": "^7"
   },
   "scripts": {
+    "test": [
+      "./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/ExampleTest"
+    ],
     "post-install-cmd": ["npm run build"],
     "post-update-cmd": ["npm run build"]
   }
