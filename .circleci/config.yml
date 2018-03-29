@@ -36,4 +36,6 @@ jobs:
           name: Build production version
           command: npm run build
       # Run tests!
-      - run: ./vendor/bin/phpunit
+      - run:
+          name: Build production version
+          command: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/ExampleTest
