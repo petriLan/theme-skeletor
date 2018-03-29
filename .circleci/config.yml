@@ -32,6 +32,8 @@ jobs:
           paths:
             - node_modules
           key: v1-npm-dependencies-{{ checksum "package.json" }}
-
+      - run:
+          name: Build production version
+          command: npm run build
       # Run tests!
-      - run: phpunit
+      - run: ./vendor/bin/phpunit
