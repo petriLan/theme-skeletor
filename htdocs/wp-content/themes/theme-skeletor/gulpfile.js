@@ -137,13 +137,10 @@ gulp.task('fonts', function() {
 /* BrowserSync */
 
 gulp.task('browsersync', function() {
-
-
   browserSync.init({
     proxy: siteUrl,
     open: false
   });
-
 });
 
 gulp.task('bs-reload', function () {

@@ -1,7 +1,5 @@
 ## Skeletor-files
 
-htdocs/**
-!htdocs/wp-content/themes/
 nginx/
 scripts/
 
@@ -9,8 +7,15 @@ composer.json
 config-sample.yml
 config.yml
 LICENSE
-vagrant-up-customizer-sample.sh
+vagrant-up-customizer.sh
 Vagrantfile
+
+## Customer-specific files
+!htdocs/
+htdocs/*
+!htdocs/wp-content/
+htdocs/wp-content/*
+!htdocs/wp-content/themes/
 
 # Vagrant run-time output, not need to track in git
 bin
@@ -22,3 +27,6 @@ myrecording
 vendor/*
 !vendor/.gitkeep
 composer.lock
+
+# Misc
+.DS_Store
