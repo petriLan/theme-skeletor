@@ -7,6 +7,18 @@ scripts/
 
 composer.json
 config-sample.yml
+config.yml
 LICENSE
 vagrant-up-customizer-sample.sh
 Vagrantfile
+
+# Vagrant run-time output, not need to track in git
+bin
+.vagrant
+mkmf.log
+myrecording
+
+# Libraries installed by Composer, Bower etc
+vendor/*
+!vendor/.gitkeep
+composer.lock
