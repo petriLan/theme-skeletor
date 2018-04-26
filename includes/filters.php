@@ -46,6 +46,17 @@ namespace rnb\themes {
 }
 
 namespace {
+
+  /**
+   * Relative URL fix for og:image, fixing sharing issues
+   */
+  add_filter('the_seo_framework_ogimage_output', function($image) {
+      return home_url($image);
+  });
+  add_filter('the_seo_framework_twitterimage_output', function($image) {
+      return home_url($image);
+  });
+
   add_filter('get_the_archive_title', function ($title) {
     if (is_category()) {
       $title = single_cat_title('', false);
