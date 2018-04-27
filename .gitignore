@@ -1,3 +1,32 @@
+## Skeletor-files
+
+nginx/
+scripts/
+
+composer.json
+config-sample.yml
+config.yml
+LICENSE
+vagrant-up-customizer.sh
+Vagrantfile
+
+## Customer-specific files
+!htdocs/
+htdocs/*
+!htdocs/wp-content/
+htdocs/wp-content/*
+!htdocs/wp-content/themes/
+
+# Vagrant run-time output, not need to track in git
+bin
+.vagrant
+mkmf.log
+myrecording
+
+# Libraries installed by Composer, Bower etc
 vendor/*
-build/*
-node_modules/*
+!vendor/.gitkeep
+composer.lock
+
+# Misc
+.DS_Store
