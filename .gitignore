@@ -6,6 +6,7 @@ scripts/
 composer.json
 config-sample.yml
 config.yml
+!.circleci/config.yml
 LICENSE
 vagrant-up-customizer.sh
 Vagrantfile

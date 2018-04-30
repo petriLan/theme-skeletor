@@ -9,18 +9,28 @@ jobs:
       # specify the version you desire here
       - image: circleci/php:7.2-node-browsers
     working_directory: ~/theme
+    environment:
+      CIRCLE_PROJECT_REPONAME: theme-skeletor
     steps:
       - checkout
       # Download and cache dependencies
+      - run:
+          name: Setup environment
+          command: |
+            echo $DEV_GITHUB_KEY > ~/dev_github_key
+            git config core.sshCommand "ssh -i ~/dev_github_key -F /dev/null -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no"
+      - run:
+          name: Install redandblue CLI
+          command: sudo npm install -g yo @redandblue/generator-redandblue
+      - run:
+          name: Install project
+          command: yo @redandblue/redandblue:wordpress --base="skeletor" --project="${CIRCLE_PROJECT_REPONAME}"
       - restore_cache:
           keys:
           - v1-php-dependencies-{{ checksum "composer.json" }}
-          - v1-npm-dependencies-{{ checksum "package.json" }}
+          # - v1-npm-dependencies-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-      - run:
-          name: Install dependencies
-          command: npm install
       - run:
           name: Install dependencies
           command: composer install -n --prefer-dist
@@ -28,14 +38,17 @@ jobs:
           paths:
             - ./vendor
           key: v1-php-dependencies-{{ checksum "composer.json" }}
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-npm-dependencies-{{ checksum "package.json" }}
-      - run:
-          name: Build production version
-          command: npm run build
+      # - save_cache:
+      #     paths:
+      #       - node_modules
+      #     key: v1-npm-dependencies-{{ checksum "package.json" }}
       # Run tests!
       - run:
           name: Run PHP unit tests
           command: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/ExampleTest
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build:
+          context: redandblue
