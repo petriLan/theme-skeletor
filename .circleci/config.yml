@@ -16,7 +16,7 @@ jobs:
           name: Setup environment
           command: |
             echo $DEV_GITHUB_KEY > ~/.ssh/dev_github_key
-            GIT_SSH_COMMAND "ssh -i ~/.ssh/dev_github_key"
+            GIT_SSH_COMMAND="ssh -i ~/.ssh/dev_github_key"
       - run:
           name: Install redandblue CLI
           command: sudo npm install -g yo @redandblue/generator-redandblue
