@@ -13,16 +13,15 @@ jobs:
       - checkout
       # Download and cache dependencies
       - run:
-          name: Setup environment
-          command: |
-            echo $DEV_GITHUB_KEY > ~/.ssh/dev_github_key
-            GIT_SSH_COMMAND="ssh -i ~/.ssh/dev_github_key"
-      - run:
           name: Install redandblue CLI
           command: sudo npm install -g yo @redandblue/generator-redandblue
       - run:
           name: Install project
-          command: yo @redandblue/redandblue:wordpress --base="skeletor" --project="${CIRCLE_PROJECT_REPONAME}"
+          command: |
+            echo $DEV_GITHUB_KEY > ~/.ssh/dev_github_key
+            chmod 400 ~/.ssh/dev_github_key
+            GIT_SSH_COMMAND="ssh -i ~/.ssh/dev_github_key -F /dev/null -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no"
+            yo @redandblue/redandblue:wordpress --base="skeletor" --project="${CIRCLE_PROJECT_REPONAME}"
       - restore_cache:
           keys:
           - v1-php-dependencies-{{ checksum "composer.json" }}
