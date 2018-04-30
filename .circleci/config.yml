@@ -9,8 +9,6 @@ jobs:
       # specify the version you desire here
       - image: circleci/php:7.2-node-browsers
     working_directory: ~/theme
-    environment:
-      CIRCLE_PROJECT_REPONAME: theme-skeletor
     steps:
       - checkout
       # Download and cache dependencies
@@ -18,6 +16,7 @@ jobs:
           name: Setup environment
           command: |
             echo $DEV_GITHUB_KEY > ~/dev_github_key
+            echo "This is: $TEST"
             git config core.sshCommand "ssh -i ~/dev_github_key -F /dev/null -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no"
       - run:
           name: Install redandblue CLI
