@@ -1,0 +1,50 @@
+{
+  "name": "redandblue/plugins",
+  "type": "plugin",
+  "license": "MIT",
+  "description": "Customer specific plugins",
+  "homepage": "https://redandblue.fi/",
+  "authors": [
+    {
+      "name": "Jari Savolainen",
+      "email": "jari@redandblue.fi",
+      "homepage": "https://github.com/orgs/redandbluefi/people/JariSavolainen"
+    },
+    {
+      "name": "Tiia Nyholm",
+      "email": "tiia@redandblue.fi",
+      "homepage": "https://github.com/orgs/redandbluefi/people/T0kya"
+    },
+    {
+      "name": "Hannu Kärkkäinen",
+      "email": "hannu@redandblue.fi",
+      "homepage": "https://github.com/orgs/redandbluefi/people/Hellenic"
+    },
+    {
+      "name": "Eemeli Makkonen",
+      "email": "eemeli@redandblue.fi",
+      "homepage": "https://github.com/orgs/redandbluefi/people/eemeeli"
+    }
+  ],
+  "keywords": [
+    "wordpress", "composer", "redandblue"
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.2"
+  },
+  "require-dev": {
+  },
+  "extra": {
+    "installer-paths": {
+      "../htdocs/wp-content/plugins/{$name}/": ["type:wordpress-plugin"],
+      "../htdocs/wp-content/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+      "../htdocs/wp-content/themes/{$name}": ["type:wordpress-theme"]
+    }
+  }
+}

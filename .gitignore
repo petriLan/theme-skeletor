@@ -10,6 +10,7 @@ vagrant-up-customizer.sh
 Vagrantfile
 
 ## Customer-specific files
+!custom/composer.json
 !htdocs/
 htdocs/*
 !htdocs/wp-content/
