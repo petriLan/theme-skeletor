@@ -6,18 +6,11 @@ version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
       - image: circleci/php:7.2-node-browsers
     working_directory: ~/theme
     steps:
       - checkout
       # Download and cache dependencies
-      - run:
-          name: Setup environment
-          command: |
-            echo $DEV_GITHUB_KEY > ~/.ssh/dev_github_key
-            chmod 400 ~/.ssh/dev_github_key
-            ssh-add ~/.ssh/dev_github_key
       - run:
           name: Install redandblue CLI
           command: sudo npm install -g yo @redandblue/generator-redandblue
@@ -45,9 +38,32 @@ jobs:
       - run:
           name: Run PHP unit tests
           command: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/ExampleTest
+
+  deploy:
+    docker:
+      - image: circleci/php:7.2-node-browsers
+    environment:
+      GOOGLE_PROJECT_ID: duodecim-203606
+      GOOGLE_COMPUTE_ZONE: europe-west4-a
+    steps:
+      - checkout
+      - run:
+          name: Build Docker image
+          command: |
+            gcloud auth configure-docker
+            docker build -t redandblue/duodecim-ebmeds .
+          #  docker push eu.gcr.io/${GOOGLE_PROJECT_ID}/duodecim-theme
+
 workflows:
   version: 2
   build-deploy:
     jobs:
       - build:
           context: redandblue
+      - deploy:
+          context: redandblue
+          requires:
+            - build
+          filters:
+            branches:
+              only: master

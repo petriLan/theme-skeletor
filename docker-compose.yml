@@ -1,0 +1,35 @@
+version: '3.3'
+
+services:
+
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    volumes:
+      - ./tmp/mysql:/var/lib/mysql
+
+  wordpress:
+    depends_on:
+      - mysql
+    image: redandblue/theme-skeletor:latest
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_PASSWORD: example
+    volumes:
+      - wordpress:/var/www/html
+
+  wp-cli:
+    depends_on:
+      - wordpress
+    image: wordpress:cli
+    environment:
+      WORDPRESS_DB_PASSWORD: example
+    volumes:
+      - wordpress:/var/www/html
+
+volumes:
+  wordpress:
