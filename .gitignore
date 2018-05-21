@@ -3,6 +3,7 @@
 nginx/
 scripts/
 
+.env
 composer.json
 config-sample.yml
 LICENSE

@@ -6,7 +6,7 @@ services:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
     volumes:
       - ./tmp/mysql:/var/lib/mysql
 
@@ -18,7 +18,7 @@ services:
     ports:
       - 8080:80
     environment:
-      WORDPRESS_DB_PASSWORD: example
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
     volumes:
       - wordpress:/var/www/html
 
@@ -27,7 +27,7 @@ services:
       - wordpress
     image: wordpress:cli
     environment:
-      WORDPRESS_DB_PASSWORD: example
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
     volumes:
       - wordpress:/var/www/html
 
