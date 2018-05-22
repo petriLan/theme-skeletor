@@ -1,5 +1,7 @@
 # How to roll with Docker
 
+⚠️ This doc is still in progress!
+
 ## Locally (or CI)
 
 1.  Make sure the project runs on your local (= everything compiled, etc)
@@ -22,7 +24,7 @@
     * Sometimes it says it works, but image pull still fails
     * If that happens, try: `gcloud docker -a`
 2.  `[sudo] docker pull eu.gcr.io/duodecim-203606/duodecim-ebmedss` should now work
-3.  Start the whole thing with: `[sudo] docker-compose up -d`
+3.  Start the whole thing with: `[sudo] docker-compose -f docker-compose.prod.yml up -d`
 
 # How to use Docker
 
@@ -30,7 +32,7 @@
 
 `docker-compose run --rm wp-cli`
 
-Recommend doing this: alias wpd='docker-compose run --rm wp-cli'
+Recommend doing this: `alias wpd='docker-compose run --rm wp-cli'`
 Then use it with 'wpd' as you would normally with 'wp', e.g. "wpd user list"
 
 ## First time setup

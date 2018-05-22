@@ -13,16 +13,14 @@ services:
   wordpress:
     depends_on:
       - mysql
-    image: wordpress:4.9.5-php7.2-apache
+    image: redandblue/theme-skeletor:latest
     restart: always
     ports:
       - 8080:80
     environment:
       WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - ./htdocs/wp-content/themes/theme-skeletor:/var/www/html/wp-content/themes/theme-skeletor
-      - ./htdocs/wp-content/mu-plugins:/var/www/html/wp-content/mu-plugins
-      - ./htdocs/wp-content/plugins:/var/www/html/wp-content/plugins
+      - wordpress:/var/www/html
 
   wp-cli:
     depends_on:
@@ -31,7 +29,7 @@ services:
     environment:
       WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - ./htdocs:/var/www/html
+      - wordpress:/var/www/html
 
 volumes:
   wordpress:
