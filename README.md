@@ -2,44 +2,43 @@
 
 This is _the_ starter kit for creating new customer-specific WordPress setups.
 
+This is stand-alone package for the customer's project. It requires base project (e.g. plain WordPress or Skeletor) in order to run.
+
 # Getting started
 
-1. Install our CLI: `[sudo] npm install -g yo generator-redandblue`
-2. Kickstart the project: `yo redandblue:wordpress`
+There's now 2 ways to run with this project.
+1. New, more lightweight approach with Docker 🐳
+2. Old, slightly heavier way with our old, magnificent Skeletor 🙊
 
-## Development
+Choose your flavour (also depending on project), instructions below.
 
-Modify `htdocs/wp-content/themes/theme-skeletor/config.json` and set the site URL for Browsersync. Use the same URL you're using for Vagrant.
+## Option 1) with Docker
 
-Install development dependencies by running `npm install`.
+1. Clone this project
+2. Edit `/etc/hosts` and add your preferred hostname
+    * e.g. `127.0.0.0    theme-skeletor.local`
+3. Run `echo "DB_PASSWORD=example123" > .env`
+4. Run `docker-compose up`
+5. Access your new WordPress at `http://theme-skeletor.local:8080`
 
-Finally run `npm run dev` to run build and Browsersync. The browser tab doesn't open automatically so just head to the `https://localhost:3000`. If you have something running on 3000, it will automatically try the next port, such as 3001.
+> You need to have Docker installed
 
-# Webfonts
-Webfonts are a bit tricky. `@font-face` works, but a bit different than you might expect. Basically, you're going to want to put your declarations to `app/styl/typography.styl`, and your fonts in `app/fonts/`, but you're going to refer to them as if they were in `app/styl/fonts`:
-```
-@font-face {
-  font-family: 'FontName';
-  src: url('./fonts/FontName/weight.woff')
-    format('woff');
-  font-weight: 700;
-}
-```
+## Option 2) with Vagrant [Deprecated]
 
-# Deploying
-This is stand-alone package for the customer's project. It requires base project (e.g. Skeletor) in order to run, and it can be managed with redandblue Yeoman generator.
+This method still works, but we'll deprecate this method soon.
+Lightweight approach with Docker is more versatile and works in all environments,
+so it's no Seravo-specific as Skeletor is.
+a
+1.  Install our CLI: `[sudo] npm install -g yo generator-redandblue`
+2.  Kickstart the project: `yo redandblue:wordpress`
+3.  Yeoman is a nice guy and will guide you through the rest of the setup
 
-## Tagging
-Composer won't use the master branch. Instead it uses tags. When you have something you want to deploy, commit your changes, and then run `git tag [your-version-here]`. If you are unsure what version number to use for the tag, run `git tag` to see a list of tags. Semantic versioning is just about the only versioning that makes sense, so use that. Basics of semantic versioning: **major**.**minor**.**patch**
+> You need to have Node.js 8+, NPM, Vagrant, Composer, etc. installed
 
-Increment the *major* number if you introduce breaking changes. Doesn't really happen in themes.
-Increment the *minor* number if you add features.
-Increment the *patch* number if you fix bugs.
+# Where to go next?
 
-So if the current version is 0.3.1, and you add a new feature, run `git tag 0.4`.
-To make the tag available for Composer, run `git push origin 0.4`.
+Next you'll probably want to start writing code. Check out
+`docs/Development.md` for some tips how to get started with that.
 
-Then when you run `composer update` on projects that have required this theme, you should see output similar to this:
-```
-- Updating redandblue/theme-skeleton (0.1 => 0.1.1):  Checking out 7e4615cfd8
-```
+Once you're done with your code, checkout the `docs/Deployment.md` on
+how to get your code running on other environments than your local machine.

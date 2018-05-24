@@ -1,0 +1,37 @@
+version: '3.3'
+
+services:
+
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./tmp/mysql:/var/lib/mysql
+
+  wordpress:
+    depends_on:
+      - mysql
+    image: wordpress:4.9.5-php7.2-apache
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./htdocs/wp-content/themes/theme-skeletor:/var/www/html/wp-content/themes/theme-skeletor
+      - ./htdocs/wp-content/mu-plugins:/var/www/html/wp-content/mu-plugins
+      - ./htdocs/wp-content/plugins:/var/www/html/wp-content/plugins
+
+  wp-cli:
+    depends_on:
+      - wordpress
+    image: wordpress:cli
+    environment:
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./htdocs:/var/www/html
+
+volumes:
+  wordpress:

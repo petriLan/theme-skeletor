@@ -3,6 +3,7 @@
 nginx/
 scripts/
 
+.env
 composer.json
 config-sample.yml
 LICENSE
@@ -17,8 +18,9 @@ htdocs/*
 htdocs/wp-content/*
 !htdocs/wp-content/themes/
 
-# Vagrant run-time output, not need to track in git
-bin
+# Run-time output, not need to track in git
+tmp/
+bin/
 .vagrant
 mkmf.log
 myrecording
