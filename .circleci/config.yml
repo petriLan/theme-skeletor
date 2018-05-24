@@ -43,7 +43,7 @@ jobs:
     docker:
       - image: circleci/php:7.2-node-browsers
     environment:
-      GOOGLE_PROJECT_ID: duodecim-203606
+      GOOGLE_PROJECT_ID: PROJECT_ID_HERE
       GOOGLE_COMPUTE_ZONE: europe-west4-a
     steps:
       - checkout
@@ -51,8 +51,8 @@ jobs:
           name: Build Docker image
           command: |
             gcloud auth configure-docker
-            docker build -t redandblue/duodecim-ebmeds .
-          #  docker push eu.gcr.io/${GOOGLE_PROJECT_ID}/duodecim-theme
+            docker build -t redandblue/theme-skeletor .
+          #  docker push eu.gcr.io/${GOOGLE_PROJECT_ID}/theme-skeletor
 
 workflows:
   version: 2
@@ -60,10 +60,10 @@ workflows:
     jobs:
       - build:
           context: redandblue
-      - deploy:
-          context: redandblue
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+      # - deploy:
+      #     context: redandblue
+      #     requires:
+      #       - build
+      #     filters:
+      #       branches:
+      #         only: master
