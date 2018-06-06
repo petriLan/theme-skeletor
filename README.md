@@ -17,7 +17,7 @@ Choose your flavour (also depending on project), instructions below.
 
 1.  Clone this project
 2.  Edit `/etc/hosts` and add your preferred hostname
-    * e.g. `127.0.0.0 theme-skeletor.local`
+    * e.g. `127.0.0.1 theme-skeletor.local`
 3.  Run `echo "DB_PASSWORD=example123" > .env`
 4.  Run `docker-compose up`
 5.  Access your new WordPress at `http://theme-skeletor.local:8080`
