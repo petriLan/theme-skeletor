@@ -4,47 +4,6 @@
  * Borrowed from https://wordpress.stackexchange.com/a/203884/78685
  */
 
-namespace rnb\themes {
-  function add_tag_to_title($title) {
-    $dev = 'D';
-    $production = 'P';
-
-    if (\rnb\core\is_prod() && is_user_logged_in()) {
-      return "[$production] $title";
-    } else if (\rnb\core\is_dev()) {
-      return "[$dev] $title";
-    }
-
-    // If both fail, fallback into this.
-
-    $domains = [
-      '.dev' => $dev,
-      '.local' => $dev,
-      'localhost' => $dev,
-      '.seravo' => $production,
-      '.wp-palvelu' => $production,
-      get_site_url() => $production,
-    ];
-
-    foreach ($domains as $domain => $tag) {
-      if (strpos(\rnb\core\current_url(), $domain) > -1) {
-        if ($tag === $production) {
-          if (!is_user_logged_in()) {
-            return $title;
-          }
-        }
-        return "[$tag] $title";
-      }
-    }
-
-    return $title;
-  }
-
-  add_filter('the_seo_framework_pro_add_title', '\rnb\themes\add_tag_to_title');
-  add_filter('admin_title', '\rnb\themes\add_tag_to_title');
-  add_filter('wp_title', '\rnb\themes\add_tag_to_title');
-}
-
 namespace {
 
   /**
