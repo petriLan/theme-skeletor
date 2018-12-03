@@ -37,7 +37,7 @@ a
 
 > You need to have Node.js 8+, NPM, Vagrant, Composer, etc. installed
 
-## Option 3 Creating new theme)
+## Option 3) Creating new theme
 
 This method is when you create your new theme / project for a new client.
 Tested with Vagrant, should also work with Docker
