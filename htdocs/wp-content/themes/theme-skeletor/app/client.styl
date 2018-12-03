@@ -1,7 +1,7 @@
-@import 'styl/variables';
-@import 'styl/functions';
+@import 'styl/settings/variables';
+@import 'styl/settings/functions';
 
-@import 'styl/reset';
+@import 'styl/settings/reset';
 
 html {
   box-sizing: border-box;
@@ -26,13 +26,15 @@ object {
 	max-width: 100%;
 }
 
+// Base
+@import 'styl/base/*';
+
+// Layouts
+@import 'styl/layouts/*';
+
+// Components
+@import 'styl/components/*';
+
 // Order so that overriding rules appear later.
-@import 'styl/helpers';
+@import 'styl/settings/helpers';
 @import 'styl/wordpress';
-@import 'styl/typography';
-@import 'styl/buttons';
-@import 'styl/forms';
-@import 'styl/structural';
-@import 'styl/element-demo';
-@import 'styl/singular';
-@import 'styl/search';
