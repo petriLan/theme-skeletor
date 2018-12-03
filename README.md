@@ -17,7 +17,7 @@ Choose your flavour (also depending on project), instructions below.
 
 1.  Clone this project
 2.  Edit `/etc/hosts` and add your preferred hostname
-    * e.g. `127.0.0.1 theme-skeletor.local`
+    - e.g. `127.0.0.1 theme-skeletor.local`
 3.  Run `echo "DB_PASSWORD=example123" > .env`
 4.  Run `docker-compose up`
 5.  Access your new WordPress at `http://theme-skeletor.local:8080`
@@ -28,7 +28,7 @@ Choose your flavour (also depending on project), instructions below.
 
 This method still works, but we'll deprecate this method soon.
 Lightweight approach with Docker is more versatile and works in all environments,
-so it's no Seravo-specific as Skeletor is.
+so it's no Seravo-specific as Skeletor is. If you are creating new project / theme check out step 3
 a
 
 1.  Install our CLI: `[sudo] npm install -g yo @redandblue/generator-redandblue`
@@ -36,6 +36,21 @@ a
 3.  Yeoman is a nice guy and will guide you through the rest of the setup
 
 > You need to have Node.js 8+, NPM, Vagrant, Composer, etc. installed
+
+## Option 3 Creating new theme)
+
+This method is when you create your new theme / project for a new client.
+Tested with Vagrant, should also work with Docker
+
+1.  `npm install -g yo @redandblue/generator-redandblue`
+2.  `yo @redandblue/redandblue:wordpress`
+3.  `cd htdocs/wp-content/themes/theme-skeletor`
+4.  `git remote remove origin`
+5.  Create new empty repository in Github eg. -> client-theme
+6.  `git remote add origin git@github.com:redandbluefi/[client-theme].git`
+7.  Push the content to new repo `git push -u origin master`
+8.  Change theme-skeletor references -> client-theme
+9.  Profit
 
 # Where to go next?
 
