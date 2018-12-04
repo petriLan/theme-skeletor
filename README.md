@@ -51,6 +51,7 @@ Tested with Vagrant, should also work with Docker
 7.  Push the content to new repo `git push -u origin master`
 8.  Change theme-skeletor references -> client-theme
 9.  Profit
+10. Remember to enable theme `wp theme activate client-theme`
 
 # Where to go next?
 
