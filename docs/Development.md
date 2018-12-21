@@ -19,6 +19,13 @@ Webfonts are a bit tricky. `@font-face` works, but a bit different than you migh
 }
 ```
 
+### Import / export initial database
+
+> Recommend doing this: `alias wpd='docker-compose run --rm wp-cli'`
+
+Export (example): `wpd db export - > duodecim-2018-08-16.sql`
+Import (example): `cat duodecim-2018-08-16.sql | wpd db import -`
+
 ### Tagging
 
 Composer won't use the master branch. Instead it uses tags. When you have something you want to deploy, commit your changes, and then run `git tag [your-version-here]`. If you are unsure what version number to use for the tag, run `git tag` to see a list of tags. Semantic versioning is just about the only versioning that makes sense, so use that. Basics of semantic versioning: **major**.**minor**.**patch**
