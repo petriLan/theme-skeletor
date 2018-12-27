@@ -7,7 +7,11 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Page Speed') > -1) {
 add_action('wp_enqueue_scripts', 'theme_scripts');
 }
 
+/* Vagrant */
 define('WPT_ENQUEUE_STRIP_PATH', '/data/wordpress/htdocs');
+
+/* Docker */
+//define('WPT_ENQUEUE_STRIP_PATH', '/var/www/html');
 
 function theme_scripts() {
   $styledir = get_stylesheet_directory();
