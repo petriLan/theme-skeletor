@@ -21,6 +21,7 @@ services:
       WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
     volumes:
       - wordpress:/var/www/html
+      - ./tmp/wordpress/uploads:/var/www/html/wp-content/uploads
 
   wp-cli:
     depends_on:
