@@ -24,6 +24,7 @@ Choose your flavour (also depending on project), instructions below.
 6.  Access your new WordPress at `http://theme-skeletor.local:8080`
 
 > You need to have Docker installed
+> Set up "SENDGRID_API_KEY" in your .env file if you need to send emails
 
 ## Option 2) with Vagrant [Deprecated]
 

@@ -1,6 +1,6 @@
 <?php
 
-define('SENDGRID_API_KEY', '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');
+define('SENDGRID_API_KEY', $_ENV["SENDGRID_API_KEY"]);
 
 foreach (glob(dirname(__FILE__) . "/includes/*") as $filename) {
   require_once($filename);
