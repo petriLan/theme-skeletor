@@ -28,6 +28,7 @@ myrecording
 # Libraries installed by Composer, Bower etc
 vendor/*
 !vendor/.gitkeep
+custom/vendor/*
 composer.lock
 
 # Misc
