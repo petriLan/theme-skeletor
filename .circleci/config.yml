@@ -25,7 +25,7 @@ jobs:
           - v1-dependencies-
       - run:
           name: Install dependencies
-          command: composer install -n --prefer-dist
+          command: composer install -n --prefer-dist -d custom/
       - save_cache:
           paths:
             - ./vendor
