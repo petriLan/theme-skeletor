@@ -42,3 +42,7 @@ Then when you run `composer update` on projects that have required this theme, y
 ```
 - Updating redandblue/theme-skeleton (0.1 => 0.1.1):  Checking out 7e4615cfd8
 ```
+
+## LazyLoad
+
+If you want to add image lazy loading to your ACF/Gutenberg/Template etc. Just add `<img class="lazy"/>`
