@@ -44,6 +44,9 @@ a
 This method is when you create your new theme / project for a new client.
 Tested with Vagrant, should also work with Docker
 
+Note, you can also setup customer project with one-liner if you prefer:
+`yo @redandblue/redandblue:wordpress --base="Seravo/wordpress" --project="redandbluefi/theme-skeletor"`
+
 1.  `npm install -g yo @redandblue/generator-redandblue`
 2.  `yo @redandblue/redandblue:wordpress`
 3.  `cd htdocs/wp-content/themes/theme-skeletor`
@@ -54,6 +57,7 @@ Tested with Vagrant, should also work with Docker
 8.  Change theme-skeletor references -> client-theme
 9.  Profit
 10. Remember to enable theme `wp theme activate client-theme`
+11. `cd /htdocs/wp-content/themes/theme-name && npm install && npm run build`
 
 # Where to go next?
 
