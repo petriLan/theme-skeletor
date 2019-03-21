@@ -46,3 +46,4 @@ Then when you run `composer update` on projects that have required this theme, y
 ## LazyLoad
 
 If you want to add image lazy loading to your ACF/Gutenberg/Template etc. Just add `<img class="lazy"/>`
+And remember to include your images this way => `<img data-src="image.jpg">`, data-src instead of src
