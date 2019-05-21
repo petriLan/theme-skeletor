@@ -35,7 +35,11 @@
     {
       "type": "composer",
       "url": "https://wpackagist.org"
-    }
+    },
+    {
+    "type": "git",
+    "url": "https://github.com/redandbluefi/wordpress-tools.git"
+  }
   ],
   "require": {
     "php": ">=7.1"
@@ -44,7 +48,8 @@
     "preferred-install": "dist"
   },
   "require-dev": {
-    "wpackagist-plugin/sendgrid-email-delivery-simplified": "1.11.8"
+    "wpackagist-plugin/sendgrid-email-delivery-simplified": "1.11.8",
+    "redandblue/wordpress-tools": "dev-master"
   },
   "extra": {
     "installer-paths": {
