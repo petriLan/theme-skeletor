@@ -1,67 +1,89 @@
 {
-  "name": "redandblue/plugins",
-  "type": "project",
-  "license": "MIT",
-  "description": "Customer specific plugins",
-  "homepage": "https://redandblue.fi/",
-  "authors": [
-    {
-      "name": "Jari Savolainen",
-      "email": "jari@redandblue.fi",
-      "homepage": "https://github.com/orgs/redandbluefi/people/JariSavolainen"
-    },
-    {
-      "name": "Tiia Nyholm",
-      "email": "tiia@redandblue.fi",
-      "homepage": "https://github.com/orgs/redandbluefi/people/T0kya"
-    },
-    {
-      "name": "Hannu Kärkkäinen",
-      "email": "hannu@redandblue.fi",
-      "homepage": "https://github.com/orgs/redandbluefi/people/Hellenic"
-    },
-    {
-      "name": "Eemeli Makkonen",
-      "email": "eemeli@redandblue.fi",
-      "homepage": "https://github.com/orgs/redandbluefi/people/eemeeli"
-    }
-  ],
-  "keywords": [
-    "wordpress",
-    "composer",
-    "redandblue"
-  ],
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://wpackagist.org"
-    },
-    {
-    "type": "git",
-    "url": "https://github.com/redandbluefi/wordpress-tools.git"
-  }
-  ],
-  "require": {
-    "php": ">=7.1"
-  },
-  "config": {
-    "preferred-install": "dist"
-  },
-  "require-dev": {
-    "wpackagist-plugin/sendgrid-email-delivery-simplified": "1.11.8",
-    "redandblue/wordpress-tools": "dev-master"
-  },
-  "extra": {
-    "installer-paths": {
-      "../htdocs/wp-content/plugins/{$name}/": [
-        "type:wordpress-plugin"
-      ],
-      "../htdocs/wp-content/mu-plugins/{$name}/": [
-        "type:wordpress-muplugin"
-      ],
-      "../htdocs/wp-content/themes/{$name}": [
-        "type:wordpress-theme"
-      ]
-    }
-  }
+	"name": "redandblue/plugins",
+	"type": "project",
+	"license": "MIT",
+	"description": "Customer specific plugins",
+	"homepage": "https://redandblue.fi/",
+	"authors": [
+		{
+			"name": "Jari Savolainen",
+			"email": "jari@redandblue.fi",
+			"homepage": "https://github.com/orgs/redandbluefi/people/JariSavolainen"
+		},
+		{
+			"name": "Tiia Nyholm",
+			"email": "tiia@redandblue.fi",
+			"homepage": "https://github.com/orgs/redandbluefi/people/T0kya"
+		},
+		{
+			"name": "Hannu Kärkkäinen",
+			"email": "hannu@redandblue.fi",
+			"homepage": "https://github.com/orgs/redandbluefi/people/Hellenic"
+		},
+		{
+			"name": "Eemeli Makkonen",
+			"email": "eemeli@redandblue.fi",
+			"homepage": "https://github.com/orgs/redandbluefi/people/eemeeli"
+		}
+	],
+	"keywords": [ "wordpress", "composer", "redandblue" ],
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://wpackagist.org"
+		},
+		{
+			"type": "git",
+			"url": "https://github.com/redandbluefi/wordpress-tools.git"
+		},
+		{
+			"type": "git",
+			"url": "https://github.com/redandbluefi/redandblue-user-roles.git"
+		},
+		{
+			"type": "package",
+			"package": {
+				"name": "advanced-custom-fields/advanced-custom-fields-pro",
+				"version": "5.6.7",
+				"type": "wordpress-plugin",
+				"dist": {
+					"type": "zip",
+					"url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9NjU3NTd8dHlwZT1kZXZlbG9wZXJ8ZGF0ZT0yMDE1LTEwLTA4IDA2OjQxOjUz"
+				}
+			}
+		},
+		{
+			"type": "package",
+			"package": {
+				"name": "relevanssi/relevanssi-premium",
+				"version": "2.2.4.2",
+				"type": "wordpress-plugin",
+				"dist": {
+					"type": "zip",
+					"url": "https://www.relevanssi.com/update/fetch_latest_version.php?api_key=21e36b96"
+				}
+			}
+		}
+	],
+	"require": {
+		"php": ">=7.1",
+
+		"wpackagist-plugin/wordpress-seo": "^11.9",
+		"redandbluefi/redandblue-user-roles": "dev-master",
+		"advanced-custom-fields/advanced-custom-fields-pro": "*",
+		"relevanssi/relevanssi-premium": "*"
+	},
+	"config": {
+		"preferred-install": "dist"
+	},
+	"require-dev": {
+		"redandblue/wordpress-tools": "dev-master"
+	},
+	"extra": {
+		"installer-paths": {
+			"../htdocs/wp-content/plugins/{$name}/": [ "type:wordpress-plugin" ],
+			"../htdocs/wp-content/mu-plugins/{$name}/": [ "type:wordpress-muplugin" ],
+			"../htdocs/wp-content/themes/{$name}": [ "type:wordpress-theme" ]
+		}
+	}
 }
