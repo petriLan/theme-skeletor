@@ -1,48 +1,49 @@
 {
-  "name": "theme-skeleton",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "gulp build",
-    "dev": "nodemon --watch gulpfile.js --exec \"gulp dev\""
-  },
-  "keywords": [],
-  "contributors": [
-    {
-      "name": "Jari Savolainen",
-      "email": "jari@redandblue.fi",
-      "url": "https://github.com/orgs/redandbluefi/people/JariSavolainen"
-    },
-    {
-      "name": "Petri Länsimaa",
-      "email": "petri@redandblue.fi",
-      "url": "https://github.com/orgs/redandbluefi/people/petriLan"
-    },
-    {
-      "name": "Eemeli Makkonen",
-      "email": "eemeli@redandblue.fi",
-      "url": "https://github.com/orgs/redandbluefi/people/eemeeli"
-    }
-  ],
-  "license": "ISC",
-  "devDependencies": {
-    "browser-sync": "^2.23.6",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "5.0.0",
-    "gulp-concat": "2.6.1",
-    "gulp-imagemin": "^4.1.0",
-    "gulp-minify-css": "^1.2.4",
-    "gulp-plumber": "^1.2.0",
-    "gulp-pxtorem": "^3.0.0",
-    "gulp-stylus": "^2.7.0",
-    "gulp-uglify": "3.0.0",
-    "nodemon": "^1.17.2",
-    "run-sequence": "^2.2.1"
-  },
-  "dependencies": {
-    "jeet": "^7.2.0",
-    "jquery": "^3.3.1",
-    "vanilla-lazyload": "^8.17.0"
-  }
+	"name": "theme-skeleton",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build": "gulp build",
+		"dev": "nodemon --watch gulpfile.js --exec \"gulp dev\""
+	},
+	"keywords": [],
+	"contributors": [
+		{
+			"name": "Jari Savolainen",
+			"email": "jari@redandblue.fi",
+			"url": "https://github.com/orgs/redandbluefi/people/JariSavolainen"
+		},
+		{
+			"name": "Petri Länsimaa",
+			"email": "petri@redandblue.fi",
+			"url": "https://github.com/orgs/redandbluefi/people/petriLan"
+		},
+		{
+			"name": "Eemeli Makkonen",
+			"email": "eemeli@redandblue.fi",
+			"url": "https://github.com/orgs/redandbluefi/people/eemeeli"
+		}
+	],
+	"license": "ISC",
+	"devDependencies": {
+		"browser-sync": "^2.23.6",
+		"gulp": "^3.9.1",
+		"gulp-autoprefixer": "5.0.0",
+		"gulp-concat": "2.6.1",
+		"gulp-imagemin": "^4.1.0",
+		"gulp-minify-css": "^1.2.4",
+		"gulp-penthouse": "^0.2.0",
+		"gulp-plumber": "^1.2.0",
+		"gulp-pxtorem": "^3.0.0",
+		"gulp-stylus": "^2.7.0",
+		"gulp-uglify": "3.0.0",
+		"nodemon": "^1.17.2",
+		"run-sequence": "^2.2.1"
+	},
+	"dependencies": {
+		"jeet": "^7.2.0",
+		"jquery": "^3.3.1",
+		"vanilla-lazyload": "^8.17.0"
+	}
 }

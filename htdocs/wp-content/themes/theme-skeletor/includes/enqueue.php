@@ -1,11 +1,6 @@
 <?php
-if (strpos($_SERVER['HTTP_USER_AGENT'], 'Page Speed') > -1) {
-  // Get the ultimate gainz. This counts as cheating but Page Speed won't stop
-  // complaining about moving styles to footer.
-  add_action('get_footer', 'theme_scripts');
-} else {
-add_action('wp_enqueue_scripts', 'theme_scripts');
-}
+add_action('wp_enqueue_scripts', 'theme_critical_scripts');
+add_action('get_footer', 'theme_scripts');
 
 /* Vagrant */
 define('WPT_ENQUEUE_STRIP_PATH', '/data/wordpress/htdocs');
@@ -13,6 +8,13 @@ define('WPT_ENQUEUE_STRIP_PATH', '/data/wordpress/htdocs');
 /* Docker */
 //define('WPT_ENQUEUE_STRIP_PATH', '/var/www/html');
 
+// Critical scripts and styles goes to header
+function theme_critical_scripts() {
+  $styledir = get_stylesheet_directory();
+  \rnb\core\enqueue($styledir . '/build/critical.css');
+}
+
+// on default load scripts and styles on footer
 function theme_scripts() {
   $styledir = get_stylesheet_directory();
 
