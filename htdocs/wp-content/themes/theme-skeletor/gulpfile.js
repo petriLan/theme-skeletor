@@ -11,7 +11,6 @@ const uglify = require('gulp-uglify');
 const imagemin = require('gulp-imagemin');
 const pxtorem = require('gulp-pxtorem');
 const runSequence = require('run-sequence');
-const jeet = require('jeet');
 const config = require('./config.json');
 const criticalCss = require('gulp-penthouse');
 
@@ -96,7 +95,6 @@ assets.css.forEach(function(asset) {
 			.pipe(plumber())
 			.pipe(
 				stylus({
-					use: [ jeet() ],
 					'include css': true
 				})
 			)
