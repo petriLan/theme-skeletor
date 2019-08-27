@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html <?php language_attributes(); ?>>
   <head>
     <!--
     "Not all mobile browsers handle orientation changes in the same way.
