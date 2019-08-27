@@ -15,14 +15,19 @@
 			"url": "https://github.com/orgs/redandbluefi/people/JariSavolainen"
 		},
 		{
+			"name": "Eemeli Makkonen",
+			"email": "eemeli@redandblue.fi",
+			"url": "https://github.com/orgs/redandbluefi/people/eemeeli"
+		},
+		{
 			"name": "Petri Länsimaa",
 			"email": "petri@redandblue.fi",
 			"url": "https://github.com/orgs/redandbluefi/people/petriLan"
 		},
 		{
-			"name": "Eemeli Makkonen",
-			"email": "eemeli@redandblue.fi",
-			"url": "https://github.com/orgs/redandbluefi/people/eemeeli"
+			"name": "Maiju Nurmi",
+			"email": "maiju@redandblue.fi",
+			"homepage": "https://github.com/orgs/redandbluefi/people/MaiuMiau"
 		}
 	],
 	"license": "ISC",

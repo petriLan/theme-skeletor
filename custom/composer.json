@@ -11,19 +11,19 @@
 			"homepage": "https://github.com/orgs/redandbluefi/people/JariSavolainen"
 		},
 		{
-			"name": "Tiia Nyholm",
-			"email": "tiia@redandblue.fi",
-			"homepage": "https://github.com/orgs/redandbluefi/people/T0kya"
-		},
-		{
-			"name": "Hannu Kärkkäinen",
-			"email": "hannu@redandblue.fi",
-			"homepage": "https://github.com/orgs/redandbluefi/people/Hellenic"
-		},
-		{
 			"name": "Eemeli Makkonen",
 			"email": "eemeli@redandblue.fi",
 			"homepage": "https://github.com/orgs/redandbluefi/people/eemeeli"
+		},
+		{
+			"name": "Petri Länsimaa",
+			"email": "petri@redandblue.fi",
+			"homepage": "https://github.com/orgs/redandbluefi/people/petriLan"
+		},
+		{
+			"name": "Maiju Nurmi",
+			"email": "maiju@redandblue.fi",
+			"homepage": "https://github.com/orgs/redandbluefi/people/MaiuMiau"
 		}
 	],
 	"keywords": [ "wordpress", "composer", "redandblue" ],
