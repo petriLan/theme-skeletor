@@ -18,10 +18,8 @@ function theme_critical_scripts() {
 function theme_scripts() {
   $styledir = get_stylesheet_directory();
 
-  if (!is_admin()) {
-    wp_deregister_script('jquery');
-  }
-
+  wp_enqueue_script('jquery');
+  
   // \rnb\core\enqueue("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700", [], true);
   \rnb\core\enqueue($styledir . '/build/client.css');
 

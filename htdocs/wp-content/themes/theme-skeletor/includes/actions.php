@@ -16,8 +16,6 @@ add_action('after_setup_theme', function() {
   add_theme_support('soil-clean-up');
   add_theme_support('soil-disable-trackbacks');
   add_theme_support('soil-nav-walker');
-  //add_theme_support('soil-nice-search');
-  //add_theme_support('soil-relative-urls'); // While relative urls sound nicer, they don't work in practice.
 
   // We're versioning our assets manually.
   add_theme_support('soil-disable-asset-versioning');
