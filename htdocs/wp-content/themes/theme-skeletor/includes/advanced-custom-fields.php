@@ -15,6 +15,7 @@ if (function_exists("acf_add_options_page")) {
       $fields = [
         'page_title' => $name,
         'menu_title' => $name,
+	'post_id' => $name,
         'parent_slug' => $parent['menu_slug'],
       ];
 
