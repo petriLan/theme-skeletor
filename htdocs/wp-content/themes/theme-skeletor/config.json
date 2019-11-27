@@ -1,3 +1,4 @@
 {
-  "SITE_URL": "https://wordpress.test"
+	"DEV_URL": "https://wordpress.test",
+	"SITE_URL": "https://wordpress.fi-p.seravo.com"
 }

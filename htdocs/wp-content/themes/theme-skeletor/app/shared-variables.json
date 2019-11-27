@@ -1,7 +1,11 @@
 {
-  "desktop": "(min-width: 1281px)",
-  "laptop": "(min-width: 1025px) and (max-width: 1280px)",
-  "tablet": "(min-width: 769px) and (max-width: 1024px)",
-  "hybrid": "(min-width: 481px) and (max-width: 768px)",
-  "phone": "(min-width: 0px) and (max-width: 480px)"
+	"colors": {
+		"white": "#fff",
+		"black": "#000"
+	},
+	"desktop": "(min-width: 1281px)",
+	"laptop": "(min-width: 1025px) and (max-width: 1280px)",
+	"tablet": "(min-width: 769px) and (max-width: 1024px)",
+	"hybrid": "(min-width: 481px) and (max-width: 768px)",
+	"phone": "(min-width: 0px) and (max-width: 480px)"
 }
