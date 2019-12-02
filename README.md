@@ -57,7 +57,8 @@ Note, you can also setup customer project with one-liner if you prefer:
 8.  Change theme-skeletor references -> client-theme
 9.  Profit
 10. Remember to enable theme `wp theme activate client-theme`
-11. `cd /htdocs/wp-content/themes/theme-name && npm install && npm run build`
+11. Run composer on custom folder to get starter plugins `cd /custom && composer install`
+12. `cd /htdocs/wp-content/themes/theme-name && npm install && npm run build`
 
 # Where to go next?
 
