@@ -14,7 +14,8 @@ const runSequence = require('run-sequence');
 const config = require('./config.json');
 const criticalCss = require('gulp-penthouse');
 
-const siteUrl = config.SITE_URL;
+var env = process.env.NODE_ENV;
+const siteUrl = env === 'development' ? config.DEV_URL : config.SITE_URL;
 
 /* File paths */
 
@@ -177,7 +178,7 @@ gulp.task('watch', [ 'browsersync' ], function() {
 
 	gulp.watch(assets.php.watch, [ 'bs-reload' ]);
 
-	gulp.watch([ 'app/**/*.styl' ], [ 'critical-css' ]);
+	gulp.watch([ 'app/**/*.styl' ]);
 });
 
 gulp.task('build', function(cb) {

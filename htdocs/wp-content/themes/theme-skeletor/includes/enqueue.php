@@ -39,4 +39,27 @@ function admin_scripts() {
   \rnb\core\enqueue($styledir . '/build/admin.js');
 }
 
-add_editor_style('build/editor.css');
+/**
+ * Enqueue block editor style
+ */
+function block_editor_styles() {
+  $styledir = get_stylesheet_directory();
+  wp_enqueue_style( 'block-editor-styles', \rnb\core\enqueue($styledir . '/build/editor.css'), false, '1.0', 'all' );
+
+  wp_enqueue_script(
+    'rnb-editor',
+    get_stylesheet_directory_uri() . '/build/editor.js',
+    array( 'wp-blocks', 'wp-dom' ),
+    filemtime( get_stylesheet_directory() . '/build/editor.js' ),
+    true
+  );
+  $theme_var = json_decode( file_get_contents(__DIR__ . "/../app/shared-variables.json") );
+  $theme_color_palet = [];
+  foreach($theme_var->colors as $value) {
+    if (substr($value, 0, 1) === '#') {
+      $theme_color_palet[] = $value;
+    }
+  }
+  wp_localize_script( 'rnb-editor', 'colorPalette', json_encode($theme_color_palet) );
+}
+add_action( 'enqueue_block_editor_assets', 'block_editor_styles' );
