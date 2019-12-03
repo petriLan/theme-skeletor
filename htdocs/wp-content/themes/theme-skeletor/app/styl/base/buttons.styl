@@ -20,12 +20,12 @@ button() {
 
 .button {
   button();
-  background: colors-black;
-  color: colors-white;
+  background: colors.black;
+  color: colors.white;
 
   &:focus, &:hover, &:active, &.active {
-    background: colors-white;
-    color: colors-black;
+    background: colors.white;
+    color: colors.black;
   }
 
   // auto override
@@ -55,12 +55,12 @@ button() {
 
   &--hollow {
     background: transparent;
-    border: 2px solid colors-black
-    color: colors-black;
+    border: 2px solid colors.black
+    color: colors.black;
 
     &:focus, &:hover, &:active, &.active {
-      background: colors-black
-      color: colors-white
+      background: colors.black
+      color: colors.white
     }
 
     &.bg {
@@ -89,6 +89,50 @@ button() {
     }
   }
 }
+
+// Gutenberg button styles
+.wp-block-button {
+
+  .has-hollow-background-color {
+    background-color: transparent;
+    for key, value in colors {
+      &.has-{key}-color {
+        border: 1px solid value
+        color: value
+
+        &:visited {
+          color: value
+        }
+        &:focus, &:hover {
+          background-color: value
+          color: colors.white
+        }
+      }
+    }
+    &.has-white-color {
+      &:focus, &:hover {
+        color: colors.black
+      }
+    }
+  }
+
+  &__link {
+    font-family: fonts.sans
+    font-weight: bold;
+    text-transform: uppercase
+    letter-spacing: 0.1;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 0;
+    transition: all 300ms ease
+
+    &:not(.has-hollow-background-color) {
+      &:hover, &:focus, &:active, &.active {
+        background-color: colors.green
+        color:colors.white
+      }
+    }
+  }
 
 /* Sample HTML:
 <button class="button">Fill button!</button>
