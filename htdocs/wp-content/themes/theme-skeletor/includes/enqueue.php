@@ -1,5 +1,7 @@
 <?php
-add_action('wp_enqueue_scripts', 'theme_critical_scripts');
+if ( 'production' === getenv('WP_ENV') ) {
+  add_action('wp_enqueue_scripts', 'theme_critical_scripts');
+}
 add_action('get_footer', 'theme_scripts');
 
 /* Vagrant */

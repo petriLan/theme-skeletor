@@ -1,0 +1,17 @@
+container() {
+  width: 100%;
+  max-width: 1230px;
+  margin-left: auto;
+  margin-right: @margin-left;
+
+  @media mq.desktop {
+    max-width: 1230px;
+  }
+
+  @media mq.laptop, mq.tablet {
+    max-width: 96%;
+  }
+  @media mq.hybrid, mq.phone {
+    max-width: 100%;
+  }
+}
