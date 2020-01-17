@@ -115,7 +115,7 @@ assets.css.forEach(function(asset) {
 
 assets.js.forEach(function(asset) {
 	gulp.task(asset.taskName, function() {
-		return gulp.src(asset.src).pipe(concat(asset.buildName)).pipe(uglify()).pipe(gulp.dest(asset.dest));
+		return gulp.src(asset.src, {allowEmpty:true}).pipe(concat(asset.buildName)).pipe(uglify()).pipe(gulp.dest(asset.dest));
 	});
 });
 
@@ -146,47 +146,23 @@ gulp.task('critical-css', function() {
 		.pipe(gulp.dest('./build/'));
 });
 
-/* BrowserSync */
-
-gulp.task('browsersync', function() {
-	browserSync.init({
-		proxy: siteUrl,
-		open: false
-	});
-});
-
-gulp.task('bs-reload', function() {
-	browserSync.reload();
-});
 
 /* Watch */
 
-gulp.task('watch', [ 'browsersync' ], function() {
+gulp.task('watch', gulp.series(function() {
 	assets.css.forEach(function(asset) {
-		gulp.watch(asset.watch, [ asset.taskName ]);
+		gulp.watch(asset.watch, gulp.series(asset.taskName));
 	});
 
-	gulp.watch('app/**/*.js', function(cb) {
-		runSequence(...jsTasks, 'bs-reload');
-	});
+	gulp.watch('app/**/*.js', gulp.series(jsTasks, function(done) {
+		done();
+	}));
 
-	assets.images.forEach(function(asset) {
-		gulp.watch(asset.watch, [ asset.taskName, 'bs-reload' ]);
-	});
+	gulp.watch(assets.fonts.src, gulp.series('fonts'));
+}));
 
-	gulp.watch(assets.fonts.src, [ 'fonts', 'bs-reload' ]);
+gulp.task('build', gulp.series(cssTasks, jsTasks, imageTasks, 'fonts', 'critical-css'));
 
-	gulp.watch(assets.php.watch, [ 'bs-reload' ]);
+gulp.task('dev', gulp.series('build', 'watch'));
 
-	gulp.watch([ 'app/**/*.styl' ]);
-});
-
-gulp.task('build', function(cb) {
-	runSequence(...cssTasks, ...jsTasks, ...imageTasks, 'fonts', 'critical-css', cb);
-});
-
-gulp.task('dev', function(cb) {
-	runSequence('build', 'watch');
-});
-
-gulp.task('default', [ 'dev' ]);
+gulp.task('default', gulp.series('dev'));
