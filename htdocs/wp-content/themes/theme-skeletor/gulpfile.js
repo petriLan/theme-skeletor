@@ -109,7 +109,6 @@ assets.css.forEach(function(asset) {
 			)
 			.pipe(minifyCSS())
 			.pipe(gulp.dest(asset.dest))
-			.pipe(browserSync.stream());
 	});
 });
 
@@ -135,7 +134,7 @@ gulp.task('critical-css', function() {
 		.src('./build/client.css')
 		.pipe(
 			criticalCss({
-				out: 'critical.css',
+				out: '/critical.css',
 				url: siteUrl, // url from where we want penthouse to extract critical styles
 				width: 1400, // max window width for critical media queries
 				height: 900, // max window height for critical media queries
@@ -151,6 +150,14 @@ gulp.task('critical-css', function() {
 
 gulp.task('watch', gulp.series(function() {
 	assets.css.forEach(function(asset) {
+    browserSync.init({
+			proxy: siteUrl,
+			host: 'localhost',
+			open: 'local',
+			port: 3000,
+			https: true
+		});
+    
 		gulp.watch(asset.watch, gulp.series(asset.taskName));
 	});
 
@@ -159,6 +166,9 @@ gulp.task('watch', gulp.series(function() {
 	}));
 
 	gulp.watch(assets.fonts.src, gulp.series('fonts'));
+  
+  gulp.watch('./build/*.css').on('change', browserSync.reload);
+	gulp.watch('./build/*.js').on('change', browserSync.reload);
 }));
 
 gulp.task('build', gulp.series(cssTasks, jsTasks, imageTasks, 'fonts', 'critical-css'));
