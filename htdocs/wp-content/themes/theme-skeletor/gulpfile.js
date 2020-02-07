@@ -109,13 +109,12 @@ assets.css.forEach(function(asset) {
 			)
 			.pipe(minifyCSS())
 			.pipe(gulp.dest(asset.dest))
-			.pipe(browserSync.stream());
 	});
 });
 
 assets.js.forEach(function(asset) {
 	gulp.task(asset.taskName, function() {
-		return gulp.src(asset.src).pipe(concat(asset.buildName)).pipe(uglify()).pipe(gulp.dest(asset.dest));
+		return gulp.src(asset.src, {allowEmpty:true}).pipe(concat(asset.buildName)).pipe(uglify()).pipe(gulp.dest(asset.dest));
 	});
 });
 
@@ -135,7 +134,7 @@ gulp.task('critical-css', function() {
 		.src('./build/client.css')
 		.pipe(
 			criticalCss({
-				out: 'critical.css',
+				out: '/critical.css',
 				url: siteUrl, // url from where we want penthouse to extract critical styles
 				width: 1400, // max window width for critical media queries
 				height: 900, // max window height for critical media queries
@@ -146,47 +145,34 @@ gulp.task('critical-css', function() {
 		.pipe(gulp.dest('./build/'));
 });
 
-/* BrowserSync */
-
-gulp.task('browsersync', function() {
-	browserSync.init({
-		proxy: siteUrl,
-		open: false
-	});
-});
-
-gulp.task('bs-reload', function() {
-	browserSync.reload();
-});
 
 /* Watch */
 
-gulp.task('watch', [ 'browsersync' ], function() {
+gulp.task('watch', gulp.series(function() {
 	assets.css.forEach(function(asset) {
-		gulp.watch(asset.watch, [ asset.taskName ]);
+    browserSync.init({
+			proxy: siteUrl,
+			host: 'localhost',
+			open: 'local',
+			port: 3000,
+			https: true
+		});
+    
+		gulp.watch(asset.watch, gulp.series(asset.taskName));
 	});
 
-	gulp.watch('app/**/*.js', function(cb) {
-		runSequence(...jsTasks, 'bs-reload');
-	});
+	gulp.watch('app/**/*.js', gulp.series(jsTasks, function(done) {
+		done();
+	}));
 
-	assets.images.forEach(function(asset) {
-		gulp.watch(asset.watch, [ asset.taskName, 'bs-reload' ]);
-	});
+	gulp.watch(assets.fonts.src, gulp.series('fonts'));
+  
+  gulp.watch('./build/*.css').on('change', browserSync.reload);
+	gulp.watch('./build/*.js').on('change', browserSync.reload);
+}));
 
-	gulp.watch(assets.fonts.src, [ 'fonts', 'bs-reload' ]);
+gulp.task('build', gulp.series(cssTasks, jsTasks, imageTasks, 'fonts', 'critical-css'));
 
-	gulp.watch(assets.php.watch, [ 'bs-reload' ]);
+gulp.task('dev', gulp.series('build', 'watch'));
 
-	gulp.watch([ 'app/**/*.styl' ]);
-});
-
-gulp.task('build', function(cb) {
-	runSequence(...cssTasks, ...jsTasks, ...imageTasks, 'fonts', 'critical-css', cb);
-});
-
-gulp.task('dev', function(cb) {
-	runSequence('build', 'watch');
-});
-
-gulp.task('default', [ 'dev' ]);
+gulp.task('default', gulp.series('dev'));
