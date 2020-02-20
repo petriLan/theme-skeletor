@@ -16,7 +16,7 @@ jobs:
         script: |
           cd /data/wordpress/
           git pull origin master
-          cd /data/wordpress/htdocs/wp-content/themes/theme-skeletor/
+          cd /data/wordpress/htdocs/wp-content/themes/${{ github.event.repository.name }}/
           npm install
           npm run build
           wp cache flush
