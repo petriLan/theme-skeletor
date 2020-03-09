@@ -13,20 +13,7 @@ There's now 2 ways to run with this project.
 
 Choose your flavour (also depending on project), instructions below.
 
-## Option 1) with Docker
-
-1.  Clone this project
-2.  Edit `/etc/hosts` and add your preferred hostname
-    - e.g. `127.0.0.1 theme-skeletor.local`
-3.  Run `echo "DB_PASSWORD=$(pwgen -nys 10 1)" > .env`
-4.  Run `composer install [-d custom/]`
-5.  Run `docker-compose up`
-6.  Access your new WordPress at `http://theme-skeletor.local:8080`
-
-> You need to have Docker installed
-> Set up "SENDGRID_API_KEY" in your .env file if you need to send emails
-
-## Option 2) with Vagrant [Deprecated]
+## Option 1) with Vagrant
 
 This method still works, but we'll deprecate this method soon.
 Lightweight approach with Docker is more versatile and works in all environments,
@@ -39,7 +26,7 @@ a
 
 > You need to have Node.js 8+, NPM, Vagrant, Composer, etc. installed
 
-## Option 3) Creating new theme
+## Option 2) Creating new theme
 
 This method is when you create your new theme / project for a new client.
 Tested with Vagrant, should also work with Docker
@@ -59,6 +46,19 @@ Note, you can also setup customer project with one-liner if you prefer:
 10. Remember to enable theme `wp theme activate client-theme`
 11. Run composer on custom folder to get starter plugins `cd /custom && composer install`
 12. `cd /htdocs/wp-content/themes/theme-name && npm install && npm run build`
+
+## Option 3) with Docker
+
+1.  Clone this project
+2.  Edit `/etc/hosts` and add your preferred hostname
+    - e.g. `127.0.0.1 theme-skeletor.local`
+3.  Run `echo "DB_PASSWORD=$(pwgen -nys 10 1)" > .env`
+4.  Run `composer install [-d custom/]`
+5.  Run `docker-compose up`
+6.  Access your new WordPress at `http://theme-skeletor.local:8080`
+
+> You need to have Docker installed
+> Set up "SENDGRID_API_KEY" in your .env file if you need to send emails
 
 # Where to go next?
 
