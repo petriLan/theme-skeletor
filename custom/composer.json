@@ -51,18 +51,6 @@
 					"url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9NjU3NTd8dHlwZT1kZXZlbG9wZXJ8ZGF0ZT0yMDE1LTEwLTA4IDA2OjQxOjUz"
 				}
 			}
-		},
-		{
-			"type": "package",
-			"package": {
-				"name": "relevanssi/relevanssi-premium",
-				"version": "2.2.4.2",
-				"type": "wordpress-plugin",
-				"dist": {
-					"type": "zip",
-					"url": "https://www.relevanssi.com/update/fetch_latest_version.php?api_key=21e36b96"
-				}
-			}
 		}
 	],
 	"require": {
@@ -70,8 +58,7 @@
 
 		"wpackagist-plugin/wordpress-seo": "^11.9",
 		"redandbluefi/redandblue-user-roles": "dev-master",
-		"advanced-custom-fields/advanced-custom-fields-pro": "*",
-		"relevanssi/relevanssi-premium": "*"
+		"advanced-custom-fields/advanced-custom-fields-pro": "*"
 	},
 	"config": {
 		"preferred-install": "dist"
