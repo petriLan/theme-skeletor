@@ -55,8 +55,7 @@
 		"gulp-sourcemaps": "^2.6.5",
 		"gulp-stylus": "^2.7.0",
 		"gulp-uglify": "3.0.0",
-		"nodemon": "^1.17.2",
-		"run-sequence": "^2.2.1"
+		"nodemon": "^1.17.2"
 	},
 	"dependencies": {
 		"@babel/core": "^7.4.4",
