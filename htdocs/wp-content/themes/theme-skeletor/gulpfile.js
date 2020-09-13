@@ -1,21 +1,24 @@
 /* Includes */
 
 const gulp = require('gulp');
+const babel = require('gulp-babel');
 const browserSync = require('browser-sync').create();
 const autoprefixer = require('gulp-autoprefixer');
 const stylus = require('gulp-stylus');
-const minifyCSS = require('gulp-minify-css');
 const plumber = require('gulp-plumber');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
 const imagemin = require('gulp-imagemin');
 const pxtorem = require('gulp-pxtorem');
-const runSequence = require('run-sequence');
 const config = require('./config.json');
 const criticalCss = require('gulp-penthouse');
+const cleanCSS = require('gulp-clean-css');
+const sourcemaps = require('gulp-sourcemaps');
+const gulpif = require('gulp-if');
 
 var env = process.env.NODE_ENV;
 const siteUrl = env === 'development' ? config.DEV_URL : config.SITE_URL;
+const map = env === 'development' ? true : false;
 
 /* File paths */
 
@@ -94,6 +97,7 @@ assets.css.forEach(function(asset) {
 		return gulp
 			.src(asset.src)
 			.pipe(plumber())
+			.pipe(gulpif(map, sourcemaps.init()))
 			.pipe(
 				stylus({
 					'include css': true
@@ -103,18 +107,34 @@ assets.css.forEach(function(asset) {
 			.pipe(
 				pxtorem({
 					replace: true,
-					propList: [ '*' ],
+					propList: [
+						'*'
+					],
 					mediaQuery: false
 				})
 			)
-			.pipe(minifyCSS())
-			.pipe(gulp.dest(asset.dest))
+			.pipe(cleanCSS())
+			.pipe(gulpif(map, sourcemaps.write('.')))
+			.pipe(gulp.dest(asset.dest));
 	});
 });
 
 assets.js.forEach(function(asset) {
 	gulp.task(asset.taskName, function() {
-		return gulp.src(asset.src, {allowEmpty:true}).pipe(concat(asset.buildName)).pipe(uglify()).pipe(gulp.dest(asset.dest));
+		return gulp
+			.src(asset.src, { allowEmpty: true })
+			.pipe(gulpif(map, sourcemaps.init()))
+			.pipe(concat(asset.buildName))
+			.pipe(
+				babel({
+					presets: [
+						'@babel/env'
+					]
+				})
+			)
+			.pipe(uglify())
+			.pipe(gulpif(map, sourcemaps.write('.')))
+			.pipe(gulp.dest(asset.dest));
 	});
 });
 
@@ -130,8 +150,8 @@ gulp.task('fonts', function() {
 
 /* Critical css */
 gulp.task('critical-css', function() {
-	return gulp
-		.src('./build/client.css')
+	return gulp.src('./build/client.css');
+	pipe(gulpif(map, sourcemaps.init()))
 		.pipe(
 			criticalCss({
 				out: '/critical.css',
@@ -141,35 +161,41 @@ gulp.task('critical-css', function() {
 				userAgent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)' // pretend to be googlebot when grabbing critical page styles.
 			})
 		)
-		.pipe(minifyCSS())
+		.pipe(cleanCSS())
+		.pipe(gulpif(map, sourcemaps.write('.')))
 		.pipe(gulp.dest('./build/'));
 });
 
-
 /* Watch */
 
-gulp.task('watch', gulp.series(function() {
-	assets.css.forEach(function(asset) {
-    browserSync.init({
-			proxy: siteUrl,
-			host: 'localhost',
-			open: 'local',
-			port: 3000,
-			https: true
+gulp.task(
+	'watch',
+	gulp.series(function() {
+		assets.css.forEach(function(asset) {
+			browserSync.init({
+				proxy: siteUrl,
+				host: 'localhost',
+				open: 'local',
+				port: 3000,
+				https: true
+			});
+
+			gulp.watch(asset.watch, gulp.series(asset.taskName));
 		});
-    
-		gulp.watch(asset.watch, gulp.series(asset.taskName));
-	});
 
-	gulp.watch('app/**/*.js', gulp.series(jsTasks, function(done) {
-		done();
-	}));
+		gulp.watch(
+			'app/**/*.js',
+			gulp.series(jsTasks, function(done) {
+				done();
+			})
+		);
 
-	gulp.watch(assets.fonts.src, gulp.series('fonts'));
-  
-  gulp.watch('./build/*.css').on('change', browserSync.reload);
-	gulp.watch('./build/*.js').on('change', browserSync.reload);
-}));
+		gulp.watch(assets.fonts.src, gulp.series('fonts'));
+
+		gulp.watch('./build/*.css').on('change', browserSync.reload);
+		gulp.watch('./build/*.js').on('change', browserSync.reload);
+	})
+);
 
 gulp.task('build', gulp.series(cssTasks, jsTasks, imageTasks, 'fonts', 'critical-css'));
 
