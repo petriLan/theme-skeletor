@@ -158,7 +158,10 @@ gulp.task('critical-css', function() {
 				url: siteUrl, // url from where we want penthouse to extract critical styles
 				width: 1400, // max window width for critical media queries
 				height: 900, // max window height for critical media queries
-				userAgent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)' // pretend to be googlebot when grabbing critical page styles.
+				userAgent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', // pretend to be googlebot when grabbing critical page styles.
+				phantomJsOptions: {
+					'ssl-protocol': 'any'
+				}
 			})
 		)
 		.pipe(cleanCSS())

@@ -55,6 +55,7 @@
 		"gulp-sourcemaps": "^2.6.5",
 		"gulp-stylus": "^2.7.0",
 		"gulp-uglify": "3.0.0",
+		"penthouse": "^2.3.1",
 		"nodemon": "^1.17.2"
 	},
 	"dependencies": {
