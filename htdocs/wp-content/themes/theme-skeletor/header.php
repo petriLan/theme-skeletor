@@ -22,7 +22,7 @@
   ?>
   <body <?php body_class([
     !$is_anon ? 'user-logged-in' : 'user-not-logged-in',
-  ]);?>>
+  ]);?> itemscope itemtype="http://schema.org/WebPage">
 
   <a class="skip-link screen-reader-text" href="#content">
     <?=pll__('Skip to content')?>
@@ -30,9 +30,22 @@
 
   <header id="navigation">
     <div class="container">
-      <?php wp_nav_menu([
-        'theme_location' => 'primary',
-      ]); ?>
+      <div class="site-branding" itemprop="logo">
+        <a class="plain-link" href="<?=get_home_url()?>" title="logo">
+          <?= \rnb\media\inline_svg('/build/img/logo.svg'); ?>
+        </a>
+      </div>
+      <nav id="primary-navigation" class="primary-navigation" role="navigation" itemscope
+      itemtype="http://schema.org/SiteNavigationElement">
+        <?php wp_nav_menu([
+          'theme_location' => 'primary',
+        ]); ?>
+      </nav>
+      <button id="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+        <span class="hamburger_wrapper">
+          <span class="hamburger"></span>
+        </span>
+      </button>
     </div>
   </header>
 
