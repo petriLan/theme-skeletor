@@ -25,23 +25,19 @@ function some_icons_output( $output, $item, $depth, $args ) {
     switch (strtolower($item->title)) {
       case 'facebook':
       case 'fb':
-        $output = '<a href="' . $item->url . '" title="'. $item->title . '"><i class="fab fa-facebook"></i></a>';
+        $output = '<a href="' . $item->url . '" title="'. $item->title . '" target="_blank" rel="noreferrer">'.\rnb\media\inline_svg('/build/img/facebook.svg').'</a>';
         break;
 
       case 'twitter':
-        $output = '<a href="' . $item->url . '" title="'. $item->title . '"><i class="fab fa-twitter"></i></a>';
+        $output = '<a href="' . $item->url . '" title="'. $item->title . '" target="_blank" rel="noreferrer">'.\rnb\media\inline_svg('/build/img/twitter.svg').'</a>';
         break;
 
       case 'youtube':
-        $output = '<a href="' . $item->url . '" title="'. $item->title . '"><i class="fab fa-youtube"></i></a>';
+        $output = '<a href="' . $item->url . '" title="'. $item->title . '" target="_blank" rel="noreferrer">'.\rnb\media\inline_svg('/build/img/youtube.svg').'</a>';
         break;
 
-      case 'pinterest':
-        $output = '<a href="' . $item->url . '" title="'. $item->title . '"><i class="fab fa-pinterest"></i></a>';
-        break;
-
-      default:
-        $output = $output = '<a href="' . $item->url . '" title="'. $item->title . '"><i class="fas fa-'. strtolower($item->title) .'"></i></a>'; /* Placeholder */
+      case 'instagram':
+        $output = '<a href="' . $item->url . '" title="'. $item->title . '" target="_blank" rel="noreferrer">'.\rnb\media\inline_svg('/build/img/instagram.svg').'</a>';
         break;
     }
   }

@@ -150,8 +150,9 @@ gulp.task('fonts', function() {
 
 /* Critical css */
 gulp.task('critical-css', function() {
-	return gulp.src('./build/client.css');
-	pipe(gulpif(map, sourcemaps.init()))
+	return gulp
+		.src('./build/client.css')
+		.pipe(gulpif(map, sourcemaps.init()))
 		.pipe(
 			criticalCss({
 				out: '/critical.css',
@@ -174,15 +175,15 @@ gulp.task('critical-css', function() {
 gulp.task(
 	'watch',
 	gulp.series(function() {
-		assets.css.forEach(function(asset) {
-			browserSync.init({
-				proxy: siteUrl,
-				host: 'localhost',
-				open: 'local',
-				port: 3000,
-				https: true
-			});
+		browserSync.init({
+			proxy: siteUrl,
+			host: 'localhost',
+			open: 'local',
+			port: 3000,
+			https: true
+		});
 
+		assets.css.forEach(function(asset) {
 			gulp.watch(asset.watch, gulp.series(asset.taskName));
 		});
 
