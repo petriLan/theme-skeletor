@@ -15,6 +15,15 @@ const criticalCss = require('gulp-penthouse');
 const cleanCSS = require('gulp-clean-css');
 const sourcemaps = require('gulp-sourcemaps');
 const gulpif = require('gulp-if');
+const through2 = require('through2');
+
+const touch = () =>
+	through2.obj(function(file, enc, cb) {
+		if (file.stat) {
+			file.stat.atime = file.stat.mtime = file.stat.ctime = new Date();
+		}
+		cb(null, file);
+	});
 
 var env = process.env.NODE_ENV;
 const siteUrl = env === 'development' ? config.DEV_URL : config.SITE_URL;
@@ -115,6 +124,7 @@ assets.css.forEach(function(asset) {
 			)
 			.pipe(cleanCSS())
 			.pipe(gulpif(map, sourcemaps.write('.')))
+			.pipe(touch())
 			.pipe(gulp.dest(asset.dest));
 	});
 });
@@ -134,6 +144,7 @@ assets.js.forEach(function(asset) {
 			)
 			.pipe(uglify())
 			.pipe(gulpif(map, sourcemaps.write('.')))
+			.pipe(touch())
 			.pipe(gulp.dest(asset.dest));
 	});
 });
@@ -167,6 +178,7 @@ gulp.task('critical-css', function() {
 		)
 		.pipe(cleanCSS())
 		.pipe(gulpif(map, sourcemaps.write('.')))
+		.pipe(touch())
 		.pipe(gulp.dest('./build/'));
 });
 

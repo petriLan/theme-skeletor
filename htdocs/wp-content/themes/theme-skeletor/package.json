@@ -56,7 +56,8 @@
 		"gulp-stylus": "^2.7.0",
 		"gulp-uglify": "3.0.0",
 		"penthouse": "^2.3.1",
-		"nodemon": "^2.0.4"
+		"nodemon": "^2.0.4",
+		"through2": "^4.0.2"
 	},
 	"dependencies": {
 		"jquery": "^3.3.1",
