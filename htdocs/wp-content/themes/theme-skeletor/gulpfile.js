@@ -58,9 +58,7 @@ const assets = {
 			buildName: 'client.js',
 			watch: 'app/**/*.js',
 			src: [
-				'node_modules/vanilla-lazyload/dist/lazyload.min.js',
 				'app/js/skip-link-focus-fix.js',
-				'app/js/lazyload.js',
 				'app/client.js',
 				'app/js/**/*.js'
 			],
