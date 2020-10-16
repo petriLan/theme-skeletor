@@ -8,8 +8,8 @@ This is stand-alone package for the customer's project. It requires base project
 
 There's now 2 ways to run with this project.
 
-1.  New, more lightweight approach with Docker 🐳
-2.  Old, slightly heavier way with our old, magnificent Skeletor 🙊
+1.  Old, slightly heavier way with our old, magnificent Skeletor 🙊
+2.  New, more lightweight approach with Docker 🐳 
 
 Choose your flavour (also depending on project), instructions below.
 
@@ -42,10 +42,13 @@ Note, you can also setup customer project with one-liner if you prefer:
 6.  `git remote add origin git@github.com:redandbluefi/[client-theme].git`
 7.  Push the content to new repo `git push -u origin master`
 8.  Change theme-skeletor references -> client-theme
-9.  Profit
-10. Remember to enable theme `wp theme activate client-theme`
-11. Run composer on custom folder to get starter plugins `cd /custom && composer install`
-12. `cd /htdocs/wp-content/themes/theme-name && npm install && npm run build`
+9.  Remember to edit config.yml file to match your project name.
+10. Profit
+11. Remember to enable theme `wp theme activate client-theme`
+12. Run composer on custom folder to get starter plugins `cd /custom && composer install`
+13. Edit correct urls to `config.json` in `htdocs/wp-content/themes/client-theme`
+13. `cd /htdocs/wp-content/themes/theme-name && npm install && npm run build`
+14. `vagrant up` (if you haven't already)
 
 ## Option 3) with Docker
 
