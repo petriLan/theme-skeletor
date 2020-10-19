@@ -26,6 +26,14 @@ html {
 
 body {
   margin: 0;
+
+  * {
+    &:focus {
+      &:not(:focus-visible) {
+        outline: none;
+      }
+    }
+  }
 }
 
 /**
