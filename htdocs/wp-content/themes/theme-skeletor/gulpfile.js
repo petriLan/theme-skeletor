@@ -98,6 +98,7 @@ const assets = {
 const cssTasks = assets.css.map((asset) => asset.taskName);
 const jsTasks = assets.js.map((asset) => asset.taskName);
 const imageTasks = assets.images.map((asset) => asset.taskName);
+const criticalTasks = Object.keys(themeVariables.critcalTypes).map((key) => key);
 
 assets.css.forEach(function(asset) {
 	gulp.task(asset.taskName, function() {
@@ -110,7 +111,6 @@ assets.css.forEach(function(asset) {
 					'include css': true
 				})
 			)
-			.pipe(autoprefixer('last 3 version', 'safari 5', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
 			.pipe(
 				pxtorem({
 					replace: true,
@@ -120,9 +120,7 @@ assets.css.forEach(function(asset) {
 					mediaQuery: false
 				})
 			)
-			.pipe(cleanCSS())
 			.pipe(gulpif(map, sourcemaps.write('.')))
-			.pipe(touch())
 			.pipe(gulp.dest(asset.dest));
 	});
 });
@@ -158,30 +156,42 @@ gulp.task('fonts', function() {
 });
 
 /* Critical css */
-gulp.task('critical-css', function() {
-	return gulp
-		.src('./build/client.css')
-		.pipe(gulpif(map, sourcemaps.init()))
-		.pipe(
-			criticalCss({
-				out: '/critical.css',
-				url: siteUrl, // url from where we want penthouse to extract critical styles
-				width: 1400, // max window width for critical media queries
-				height: 900, // max window height for critical media queries
-				userAgent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', // pretend to be googlebot when grabbing critical page styles.
-				phantomJsOptions: {
-					'ssl-protocol': 'any'
-				}
-			})
-		)
+Object.keys(themeVariables.critcalTypes).forEach(function(key) {
+	gulp.task(key, function() {
+		return gulp
+			.src('./build/client.css')
+			.pipe(plumber())
+			.pipe(
+				criticalCss({
+					out: themeVariables.critcalTypes[key].output,
+					url: siteUrl + themeVariables.critcalTypes[key].path, // url from where we want penthouse to extract critical styles
+					width: themeVariables.critcalTypes[key].width, // max window width for critical media queries
+					height: themeVariables.critcalTypes[key].height, // max window height for critical media queries
+					userAgent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', // pretend to be googlebot when grabbing critical page styles.
+					forceInclude: themeVariables.critcalTypes[key].includeCss,
+					phantomJsOptions: {
+						'ssl-protocol': 'any'
+					},
+					blockJSRequests: true
+				})
+			)
+			.pipe(cleanCSS())
+			.pipe(touch())
+			.pipe(gulp.dest('./build/'));
+	});
+});
+
+/* Minify client.css - this must do after critical to avooid errors in critical */
+gulp.task('minify-client-css', function () {
+	return gulp.src('./build/client.css')
+		.pipe(plumber())
 		.pipe(cleanCSS())
-		.pipe(gulpif(map, sourcemaps.write('.')))
+		.pipe(autoprefixer('last 2 version', '>1%'))
 		.pipe(touch())
-		.pipe(gulp.dest('./build/'));
+    .pipe(gulp.dest('./build/'));
 });
 
 /* Watch */
-
 gulp.task(
 	'watch',
 	gulp.series(function() {
@@ -211,7 +221,7 @@ gulp.task(
 	})
 );
 
-gulp.task('build', gulp.series(cssTasks, jsTasks, imageTasks, 'fonts', 'critical-css'));
+gulp.task('build', gulp.series(cssTasks, jsTasks, imageTasks, 'fonts', criticalTasks, 'minify-client-css'));
 
 gulp.task('dev', gulp.series('build', 'watch'));
 

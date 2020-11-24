@@ -12,5 +12,31 @@
 
 		"mobileMenu": "(max-width: 768px)",
 		"desktopMenu": "(min-width: 769px)"
+	},
+	"critcalTypes": {
+		"critical_front": {
+			"path": "/",
+			"width": 1400,
+			"height": 1000,
+			"output": "/critical_front.css",
+			"includeCss": [],
+			"isDefault": true,
+			"isFront": true,
+			"postTypes": "*",
+			"ids": "*"
+		},
+		"critical_article": {
+			"path": "/path-to-article/",
+			"width": 1400,
+			"height": 1000,
+			"output": "/critical_article.css",
+			"includeCss": [],
+			"isDefault": false,
+			"isFront": false,
+			"postTypes": [
+				"post"
+			],
+			"ids": "*"
+		}
 	}
 }

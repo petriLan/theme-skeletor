@@ -33,6 +33,11 @@
 			"name": "Kalle Halonen",
 			"email": "kalle@redandblue.fi",
 			"homepage": "https://github.com/orgs/redandbluefi/people/halonenkalle"
+		},
+		{
+			"name": "Björn Zweigberg",
+			"email": "bjorn@redandblue.fi",
+			"homepage": "https://github.com/orgs/redandbluefi/people/zweigberg"
 		}
 	],
 	"license": "ISC",
